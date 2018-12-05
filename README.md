@@ -1,5 +1,7 @@
 # EleNA: Elevation Based Navigation
 
+![EleNA](frontend.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
