@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 *.xml
 EleNa.iml
-src/logs/osmnx_2018_11_28.log
+*.log
+cache/
