@@ -3,8 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 // these are the styles for the MapView
 const styles = theme => ({
-
-})
+});
 
 class MapView extends Component {
     render() {
