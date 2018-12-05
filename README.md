@@ -1,6 +1,6 @@
 # EleNA: Elevation Based Navigation
 
-![EleNA](frontend.png)
+<img src="frontend.png" alt="FrontEnd UI" width="300"/>
 
 ## Available Scripts
 
