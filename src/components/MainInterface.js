@@ -72,14 +72,39 @@ class MainInterface extends React.Component {
           />
           <ElevationToggles></ElevationToggles>
           <PercentageSlider></PercentageSlider>
-          <Button variant="contained" className={classes.button}>
+          <Button variant="contained" className={classes.button} onClick={() => { this.sendRequest() }}>
             Go!
           </Button>
         </Drawer>
         <main className={classes.content}>
         </main>
       </div>
-    ); } }
+    ); }
+
+    sendRequest() {
+      fetch("http://localhost:8080/get_route", {
+        method: 'POST',
+        mode: "no-cors",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({
+        //   Source: 'test1',
+        //   Destination: 'test2',
+        //   Max_min: 'test3',
+        //   Percentage: 'test_4'
+        // })
+        body: {
+          "Source": 'test1',
+          "Destination": 'test2',
+          "Max_min": 'test3',
+          "Percentage": 'test_4'
+        }
+      })
+      .then(res => console.log(res));
+    }
+  }
 
 MainInterface.propTypes = {
   classes: PropTypes.object.isRequired,

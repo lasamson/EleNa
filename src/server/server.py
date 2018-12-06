@@ -5,6 +5,7 @@ app = Flask(__name__)
 @app.route("/get_route", methods=["POST"])
 def get_route():
     content = request.get_json()
+    print(content)
     source = content["Source"]
     destination = content["Destination"]
     max_min = content["Max_min"]
