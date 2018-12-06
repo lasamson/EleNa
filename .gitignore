@@ -26,3 +26,5 @@ yarn-error.log*
 EleNa.iml
 *.log
 cache/
+
+.vscode/

@@ -7,10 +7,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Input from '@material-ui/core/Input';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 import Button from '@material-ui/core/Button';
 import PercentageSlider from './PercentageSlider';
+import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 
 const drawerWidth = 425;
@@ -38,6 +37,9 @@ const styles = theme => ({
     height: '100vh',
     overflow: 'auto',
   },
+  button: {
+    margin: theme.spacing.unit,
+  }
 });
 
 class MainInterface extends React.Component {
@@ -68,14 +70,7 @@ class MainInterface extends React.Component {
               'aria-label': 'Description',
             }}
           />
-          <ToggleButtonGroup>
-            <ToggleButton value="min">
-              Min
-            </ToggleButton>
-            <ToggleButton value="rigmaxht">
-              Max
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <ElevationToggles></ElevationToggles>
           <PercentageSlider></PercentageSlider>
           <Button variant="contained" className={classes.button}>
             Go!
