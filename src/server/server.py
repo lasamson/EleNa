@@ -2,11 +2,6 @@ import os
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-@app.route('/test', methods=["GET"])
-def test():
-    print("testing")
-    return "hello"
-
 @app.route("/get_route", methods=["POST"])
 def get_route():
     content = request.get_json()
