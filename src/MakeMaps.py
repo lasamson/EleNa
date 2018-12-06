@@ -37,7 +37,7 @@ def get_map(city,state):
         return graph, graph_proj
 
 
-def add_node_elevations_open(G, max_locations_per_batch=150,
+def add_node_elevations_open(G, max_locations_per_batch=180,
                         pause_duration=0.02): # pragma: no cover
 
     url_template = 'https://api.open-elevation.com/api/v1/lookup?locations={}'
