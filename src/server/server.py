@@ -17,8 +17,10 @@ def get_route():
     print("Percentage: {}".format(percentage))
 
     print("Getting optimal route...")
-    print("Sending route to the MapView...")
-    return "Optimal Route"
+    print("Sending data to the MapView...")
+    # route = algorithm(source, destination, max_min, percentage)
+    # process route into json object
+    return "Sending Optimal Route back..."
 
 if __name__ == "__main__":
     app.run(port=8080)
