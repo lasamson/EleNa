@@ -17,22 +17,25 @@ from osmnx.utils import log
 
 ox.config(log_file=True, log_console=True, use_cache=True)
 
-def get_map(city,state):
+
+def get_map(city, state):
     file_name = "%s%s.pkl" % (city, state)
-    projected_file_name = "%s%s_projected.pkl"% (city,state)
+    projected_file_name = "%s%s_projected.pkl" % (city, state)
 
     projected_file_path = Path(projected_file_name)
     file_path = Path(file_name)
 
-    if  projected_file_path.is_file() and file_path.is_file() :
-        return pkl._load(open(file_name,"rb")), pkl.load(open(projected_file_name,"rb"))
+    if projected_file_path.is_file() and file_path.is_file():
+        graph = pkl.load(open(file_name, 'rb'))
+        print type(graph)
+        return pkl.load(open(file_name, "rb")), pkl.load(open(projected_file_name, "rb"))
     else:
         query = {'city': city, 'state': state, 'country': 'USA'}
-        graph = ox.graph_from_place(query,network_type='drive')
-        graph = ox.add_node_elevations(graph,"AIzaSyCPFbx7dhPoxlSRRN4okxhibuu0E_7DUWI")
+        graph = ox.graph_from_place(query, network_type='drive')
+        graph = ox.add_node_elevations(graph, "AIzaSyCPFbx7dhPoxlSRRN4okxhibuu0E_7DUWI")
         graph = ox.add_edge_grades(graph)
         pkl.dump(graph, open(file_name, "wb"))
-        graph_proj =  ox.project_graph(graph)
+        graph_proj = ox.project_graph(graph)
         pkl.dump(graph_proj, open(projected_file_name, "wb"))
         return graph, graph_proj
 
@@ -85,7 +88,8 @@ def get_map(city,state):
 #
 #     return G
 
-def clean(city,state):
+
+def clean(city, state):
     file_name = "%s%s.pkl" % (city, state)
     projected_file_name = "%s%s_projected.pkl" % (city, state)
 
@@ -93,7 +97,5 @@ def clean(city,state):
     os.remove(projected_file_name)
 
 
-get_map('Amherst','MA')
-clean('Amherst','MA')
-
-
+get_map('Amherst', 'MA')
+# clean('Amherst','MA')
