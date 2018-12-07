@@ -11,9 +11,18 @@ type State = {
 
 export default class MapView extends Component<{}, State> {
   state = {
-    lat: 42.389910,
+    lat: 10.389910,
     lng: -72.527820,
     zoom: 13,
+  }
+
+  componentWillMount() {
+    if (navigator.geolocation) {
+      console.log("setting this bitch");
+      console.log(this);
+      let position = this.setPosition.bind(this);
+      navigator.geolocation.getCurrentPosition(position);
+    }
   }
 
   render() {
@@ -37,6 +46,19 @@ export default class MapView extends Component<{}, State> {
         </Marker>
       </Map>
     )
+  }
+
+  setPosition(position) {
+    // let state = {
+    //   lat: position.coords.latitude,
+    //   lng: position.coords.longitude,
+    //   zoom: 13
+    // }
+    this.setState({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+      zoom: 13
+    })
   }
 
   // style() {
