@@ -21,7 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.log
-*.iml
+
 *.xml
 src/cache/
+
+EleNa.iml
+*.log
+cache/
+
+.vscode/
