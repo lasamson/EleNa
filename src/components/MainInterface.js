@@ -5,12 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Input from '@material-ui/core/Input';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import Button from '@material-ui/core/Button';
 import PercentageSlider from './PercentageSlider';
 import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
+import MapView from './MapView';
 
 const drawerWidth = 425;
 
@@ -36,6 +35,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     height: '100vh',
     overflow: 'auto',
+    padding: 0
   },
   button: {
     margin: theme.spacing.unit,
@@ -77,6 +77,7 @@ class MainInterface extends React.Component {
           </Button>
         </Drawer>
         <main className={classes.content}>
+        <MapView></MapView>
         </main>
       </div>
     ); }

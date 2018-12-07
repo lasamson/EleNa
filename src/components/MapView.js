@@ -1,19 +1,72 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
+// @flow
 
-// these are the styles for the MapView
-const styles = theme => ({
-});
+import React, { Component } from 'react'
+import { Map, TileLayer, Marker, Popup } from '../map_components'
 
-class MapView extends Component {
-    render() {
-        // the server needs to send data to this component
-        // render the map that shows the best route based on elevation
-    }
+type State = {
+  lat: number,
+  lng: number,
+  zoom: number,
 }
 
-MapView.propTypes = {
-    classes: PropTypes.object.isRequired
-};
+export default class MapView extends Component<{}, State> {
+  state = {
+    lat: 51.505,
+    lng: -0.09,
+    zoom: 13,
+  }
 
-export default withStyles(styles)(MapView);
+  render() {
+    const position = [this.state.lat, this.state.lng]
+    return (
+      <Map center={position} zoom={this.state.zoom} style={{
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.3,
+        fillColor: '#666666'
+      }}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </Map>
+    )
+  }
+
+  // style() {
+  //   // console.log(sn);
+  //   // if (sn == feature.properties.name) {
+  //   //   return {
+  //   //     weight: 2,
+  //   //     opacity: 1,
+  //   //     color: 'white',
+  //   //     dashArray: '3',
+  //   //     fillOpacity: 0.3,
+  //   //     fillColor: '#ff0000'
+  //   //   };
+  //   // } else {
+  //   //   return {
+  //   //     weight: 2,
+  //   //     opacity: 1,
+  //   //     color: 'white',
+  //   //     dashArray: '3',
+  //   //     fillOpacity: 0.3,
+  //   //     fillColor: '#666666'
+  //   //   };
+  //   // }
+  //   return {
+  //     weight: 2,
+  //     opacity: 1,
+  //     color: 'white',
+  //     dashArray: '3',
+  //     fillOpacity: 0.3,
+  //     fillColor: '#ff0000'
+  //   };
+  // }
+}
