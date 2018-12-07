@@ -82,7 +82,7 @@ def get_map(city,state):
 #     df['elevation'] = df['elevation'].round(3) # round to millimeter
 #     nx.set_node_attributes(G, name='elevation', values=df['elevation'].to_dict())
 #     log('Added elevation data to all nodes.')
-# 
+#
 #     return G
 
 def clean(city,state):
