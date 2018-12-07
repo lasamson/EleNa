@@ -7,10 +7,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Input from '@material-ui/core/Input';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 import Button from '@material-ui/core/Button';
 import PercentageSlider from './PercentageSlider';
+import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 
 const drawerWidth = 425;
@@ -38,6 +37,9 @@ const styles = theme => ({
     height: '100vh',
     overflow: 'auto',
   },
+  button: {
+    margin: theme.spacing.unit,
+  }
 });
 
 class MainInterface extends React.Component {
@@ -68,23 +70,41 @@ class MainInterface extends React.Component {
               'aria-label': 'Description',
             }}
           />
-          <ToggleButtonGroup>
-            <ToggleButton value="min">
-              Min
-            </ToggleButton>
-            <ToggleButton value="rigmaxht">
-              Max
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <ElevationToggles></ElevationToggles>
           <PercentageSlider></PercentageSlider>
-          <Button variant="contained" className={classes.button}>
+          <Button variant="contained" className={classes.button} onClick={() => { this.sendRequest() }}>
             Go!
           </Button>
         </Drawer>
         <main className={classes.content}>
         </main>
       </div>
-    ); } }
+    ); }
+
+    sendRequest() {
+      fetch("http://localhost:8080/get_route", {
+        method: 'POST',
+        mode: "no-cors",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({
+        //   Source: 'test1',
+        //   Destination: 'test2',
+        //   Max_min: 'test3',
+        //   Percentage: 'test_4'
+        // })
+        body: {
+          "Source": 'test1',
+          "Destination": 'test2',
+          "Max_min": 'test3',
+          "Percentage": 'test_4'
+        }
+      })
+      .then(res => console.log(res));
+    }
+  }
 
 MainInterface.propTypes = {
   classes: PropTypes.object.isRequired,
