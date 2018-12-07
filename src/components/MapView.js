@@ -11,8 +11,8 @@ type State = {
 
 export default class MapView extends Component<{}, State> {
   state = {
-    lat: 51.505,
-    lng: -0.09,
+    lat: 42.389910,
+    lng: -72.527820,
     zoom: 13,
   }
 
