@@ -18,8 +18,6 @@ export default class MapView extends Component<{}, State> {
 
   componentWillMount() {
     if (navigator.geolocation) {
-      console.log("setting this bitch");
-      console.log(this);
       let position = this.setPosition.bind(this);
       navigator.geolocation.getCurrentPosition(position);
     }
@@ -49,11 +47,6 @@ export default class MapView extends Component<{}, State> {
   }
 
   setPosition(position) {
-    // let state = {
-    //   lat: position.coords.latitude,
-    //   lng: position.coords.longitude,
-    //   zoom: 13
-    // }
     this.setState({
       lat: position.coords.latitude,
       lng: position.coords.longitude,

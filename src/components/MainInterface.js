@@ -10,8 +10,26 @@ import PercentageSlider from './PercentageSlider';
 import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 import MapView from './MapView';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const drawerWidth = 425;
+
+const mytheme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#0097A7',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 const styles = theme => ({
   root: {
