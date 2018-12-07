@@ -25,10 +25,10 @@ export default class MapView extends Component<{}, State> {
         color: 'white',
         dashArray: '3',
         fillOpacity: 0.3,
-        fillColor: '#666666'
+        fillColor: '#ffffff'
       }}>
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"
         />
         <Marker position={position}>
           <Popup>
