@@ -23,6 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 *.xml
+src/cache/
+
 EleNa.iml
 *.log
 cache/
+
+.vscode/
