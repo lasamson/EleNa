@@ -58,6 +58,7 @@ class MainInterface extends React.Component {
           <h1 className="elenaLogo">EleNa</h1>
           <Input
             placeholder="Source"
+            id="source"
             className={classes.input}
             inputProps={{
               'aria-label': 'Description',
@@ -65,6 +66,7 @@ class MainInterface extends React.Component {
           />
           <Input
             placeholder="Destination"
+            id="destination"
             className={classes.input}
             inputProps={{
               'aria-label': 'Description',
@@ -82,27 +84,26 @@ class MainInterface extends React.Component {
     ); }
 
     sendRequest() {
-      fetch("http://localhost:8080/get_route", {
-        method: 'POST',
-        mode: "no-cors",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        // body: JSON.stringify({
-        //   Source: 'test1',
-        //   Destination: 'test2',
-        //   Max_min: 'test3',
-        //   Percentage: 'test_4'
-        // })
-        body: {
-          "Source": 'test1',
-          "Destination": 'test2',
-          "Max_min": 'test3',
-          "Percentage": 'test_4'
-        }
-      })
-      .then(res => console.log(res));
+
+        const source = document.getElementById('source').value;
+        const destination = document.getElementById('destination').value;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-122")[0].getAttribute("aria-valuenow")) + 100;
+
+        fetch("http://localhost:8080/get_route", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin':'*'
+          },
+          body: JSON.stringify({
+            Source: source,
+            Destination: destination,
+            Max_min: 'test3',
+            Percentage: percentage
+          })
+        })
+        .then(res => res.json())
+        .then(json => console.log(JSON.stringify(json)));
     }
   }
 
