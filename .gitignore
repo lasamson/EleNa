@@ -30,3 +30,7 @@ EleNa.iml
 cache/
 
 .vscode/
+
+#pkl files
+src/AmherstMA.pkl
+src/AmherstMA_projected.pkl
