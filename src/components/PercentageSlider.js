@@ -6,11 +6,27 @@ import Slider from '@material-ui/lab/Slider';
 
 const styles = {
   root: {
-    width: 200,
+    position: 'relative',
+    width: '100%',
+    flexDirection: 'row',
   },
   slider: {
     padding: '22px 0px',
+    position: 'relative',
+    width: '70%',
+    marginLeft: '15%'
   },
+  inlineBlock: {
+    width: '70%',
+    marginLeft: '15%',
+    display: 'inline-block'
+  },
+  labelText1: {
+    alignSelf: 'flex-start',
+  },
+  labelText2: {
+    justifyContent: 'flex-end',
+  }
 };
 
 class PercentageSlider extends React.Component {
@@ -28,13 +44,14 @@ class PercentageSlider extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Typography id="label">% Shortest Path</Typography>
+        {/* <Typography classes={{ container: classes.labelText1}}>100 %</Typography> */}
         <Slider
-          classes={{ container: classes.slider }}
+          classes={{ container: classes.slider}}
           value={value}
           aria-labelledby="label"
           onChange={this.handleChange}
         />
+        {/* <Typography classes={{ container: classes.labelText2}}>200 %</Typography> */}
       </div>
     );
   }

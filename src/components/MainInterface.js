@@ -12,8 +12,6 @@ import '../styles/MainInterface.css';
 import MapView from './MapView';
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const drawerWidth = 425;
-
 const mytheme = createMuiTheme({
   palette: {
     primary: {
@@ -41,7 +39,7 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: drawerWidth,
+    width: '35vw',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -57,6 +55,11 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    position: 'relative',
+    padding: [0],
+    width: '20%',
+    display: 'flex',
+    marginLeft: '40%'
   }
 });
 
@@ -106,7 +109,7 @@ class MainInterface extends React.Component {
 
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-122")[0].getAttribute("aria-valuenow")) + 100;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-125")[0].getAttribute("aria-valuenow")) + 100;
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',

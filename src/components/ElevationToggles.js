@@ -14,7 +14,9 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     margin: 0,
-    background: theme.palette.background.default,
+    position: 'relative',
+    width: '30%',
+    marginLeft: '37%'
   },
 });
 
