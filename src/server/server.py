@@ -10,25 +10,20 @@ app = Flask(__name__)
 CORS(app)
 geolocator = Nominatim(user_agent="elena")
 
-def get_city_country(lat, lon):
-    """ Get City, Country based on Lat, Long Coordinates """
-    url = "http://maps.googleapis.com/maps/api/geocode/json?"
-    url += "latlng=%s,%s&sensor=false" % (lat, lon)
-    v = urlopen(url).read()
-    j = json.loads(v)
-    components = j['results'][0]['address_components']
-    country = town = None
-    for c in components:
-        if "country" in c['types']:
-            country = c['long_name']
-        if "postal_town" in c['types']:
-            town = c['long_name']
-    return town, country
+
+def get_city_country(address):
+    """ Get city and state from address"""
+    address_split = address.split(",")
+    town = address_split[1].strip()
+    state = address_split[2].strip()
+    return town, state
+
 
 def convert_addresss_to_lat_lng(address):
     """ Convert Address to Lat Long Coodintates """
     location = geolocator.geocode(address)
     return (location.latitude, location.longitude)
+
 
 @app.route("/get_route", methods=["POST"])
 def get_route():
@@ -37,23 +32,27 @@ def get_route():
     source = content["Source"]
     destination = content["Destination"]
     max_min = content["Max_min"]
-    percentage = content["Percentage"]
+    percentage = float(content["Percentage"])
 
     # convert the source,destination addresses to lat,lng coordinates
     source_lat, source_lng = convert_addresss_to_lat_lng(source)
     dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
 
+    print(source_lat, source_lng)
+    print(dest_lat, dest_lng)
+
     # get the city, country of the source
-    city, country = get_city_country(source_lat, source_lng)
+    city, state = get_city_country(source)
+    print(city, state)
 
     # find the best path between source & destination based on elevation
-    route = find_route(source_lat, source_lng)
-    print(route)
+    route = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
 
     # send a response back (w/ the route)
-    response = jsonify({'Route': 'Map Route Object'})
+    response = jsonify({'Route': route})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
 
 if __name__ == "__main__":
     app.run(port=8080)
