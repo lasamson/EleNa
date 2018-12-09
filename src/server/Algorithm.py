@@ -32,3 +32,11 @@ def get_length(G, u, v):
 
 def get_shortest_path(G,):
     
+def get_path(came_from, origin, destination):
+    path = []
+    p = destination
+    path.append(p)
+    while p != origin:
+        p = came_from[p]
+        path.append(p)
+    return path[::-1]
