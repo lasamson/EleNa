@@ -24,22 +24,22 @@ from itertools import count
 from heapq import *
 
 
-def get_elevation_gain(G, u, v):
-    return G.nodes[u]['elevation'] - G.nodes[v]['elevation']
+def get_elevation_gain(G, start, end):
+    return G.nodes[start]['elevation'] - G.nodes[end]['elevation']
 
 
-def get_length(G, u, v):
-    return G.edges[u, v, 0]['length']
+def get_length(G, start, end):
+    return G.edges[start, end, 0]['length']
 
 def get_closest_node_from_gps(G,x,y):
 
-def get_path_betwen_two_points(came_from, origin, destination):
+def generate_path(revPath, start, end):
     path = []
-    p = destination
-    path.append(p)
-    while p != origin:
-        p = came_from[p]
-        path.append(p)
+    n = end
+    path.append(n)
+    while n != start:
+        n = revPath[n]
+        path.append(n)
     return path[::-1]
 
 
@@ -63,30 +63,29 @@ def get_path_length(G, path):
     return total_length
 
 
-def get_shortest_path(G, source, target, weight='length'):
-    frontier = []
-    heappush(frontier, (0, source))
-    came_from = {}
-    cost_so_far = {}
-    came_from[source] = None
-    cost_so_far[source] = 0
+def get_shortest_path(G, start, end, option):
+    queue = []
+    heappush(queue, (0, start))
+    revPath = []
+    cost = []
+    revPath[start] = None
+    cost[start] = 0
 
-    while len(frontier) != 0:
-        (val, current) = heappop(frontier)
-        if current == target:
+    while len(queue) > 0:
+        (val, current) = heappop(queue)
+        if current == end:
             break
-        for u, nxt, data in G.edges(current, data=True):
-            new_cost = cost_so_far[current]
-            if weight == 'length':
-                incCost = get_length(G, u, nxt)
-            elif weight == 'elevation':
-                incCost = get_total_elevation(G, u, nxt)
-            if incCost > 0:
-                new_cost += incCost
-            if nxt not in cost_so_far or new_cost < cost_so_far[nxt]:
-                cost_so_far[nxt] = new_cost
-                priority = new_cost
-                heappush(frontier, (priority, nxt))
-                came_from[nxt] = current
+        for cur, nxt, data in G.edges(current, data=True):
+            new_cost = cost[current]
+            if option == 'length':
+                curCost = get_length(G, cur, nxt)
+            elif option == 'elevation':
+                curCost = get_path_elevation(G, cur, nxt)
+            if curCost > 0:
+                new_cost += curCost
+            if new_cost < cost[nxt] or nxt not in cost:
+                cost[nxt] = new_cost
+                heappush(queue, (new_cost, nxt))
+                revPath[nxt] = current
 
-    return get_path_betwen_two_points(came_from, source, target)
+    return generate_path(revPath, start, end)
