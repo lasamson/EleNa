@@ -28,3 +28,13 @@ def get_elevation_gain(G, u, v):
 
 def get_length(G, u, v):
     return G.edges[u, v, 0]['length']
+
+
+def get_path(came_from, origin, destination):
+    path = []
+    p = destination
+    path.append(p)
+    while p != origin:
+        p = came_from[p]
+        path.append(p)
+    return path[::-1]
