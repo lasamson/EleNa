@@ -43,7 +43,7 @@ def get_path_betwen_two_point(came_from, origin, destination):
     return path[::-1]
 
 
-def get_total_elevation(G, path):
+def get_path_elevation(G, path):
     total_elevation = 0
 
     for i in range(len(path) - 1):
