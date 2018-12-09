@@ -23,6 +23,7 @@ from itertools import count
 
 from heapq import *
 from collections import OrderedDict
+import numpy as np
 
 
 def get_elevation_gain(G, start, end):
@@ -94,7 +95,7 @@ def get_shortest_path(G, start, end, option='length'):
                 curCost = get_path_elevation(G, cur, nxt)
             if curCost > 0:
                 new_cost += curCost
-            if  nxt not in cost or new_cost < cost[nxt] :
+            if nxt not in cost or new_cost < cost[nxt]:
                 cost[nxt] = new_cost
                 heappush(queue, (new_cost, nxt))
                 revPath[nxt] = current
@@ -111,14 +112,26 @@ def get_euclidean_distance(G, start, end):
     return dist
 
 
-def get_all_paths(G, start, end):
-    min_distance = get_shortest_path(G, start, end)
+def get_all_paths(G, start, end, percent, max_ele=True):
+    min_distance = get_path_length(g, get_shortest_path(G, start, end))
     shortest_paths = list(nx.all_shortest_paths(G, start, end))
+    max_path_length = (1.0 + percent) * min_distance
 
     elevation_gain = {}
     for p in shortest_paths:
-        elevation_gain[get_path_elevation(p)] = p
+        path_dist = get_path_length(G, p)
+        if path_dist > max_path_length:
+            print(min_distance, max_path_length)
+            continue
+        elevation_gain[get_path_elevation(g, p)] = p
 
     ordered_paths = OrderedDict(sorted(elevation_gain.items()))
 
     keys = ordered_paths.keys()
+
+    if max_ele:
+        key = max(elevation_gain.iterkeys(), key=(lambda key: elevation_gain[key]))
+    else:
+        key = min(elevation_gain.iterkeys(), key=(lambda key: elevation_gain[key]))
+
+    return elevation_gain[key]
