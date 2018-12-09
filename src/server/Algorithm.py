@@ -41,3 +41,23 @@ def get_path_betwen_two_point(came_from, origin, destination):
         p = came_from[p]
         path.append(p)
     return path[::-1]
+
+
+def get_total_elevation(G, path):
+    total_elevation = 0
+
+    for i in range(len(path) - 1):
+        curr_elevation = get_elevation_gain(G, path[i], path[i + 1])
+        if curr_elevation > 0:
+            total_elevation += curr_elevation
+
+    return total_elevation
+
+
+def get_path_length(G, path):
+    total_length = 0
+
+    for i in range(len(path) - 1):
+        total_length += get_length(G, path[i], path[i + 1])
+
+    return total_length
