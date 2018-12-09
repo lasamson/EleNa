@@ -10,7 +10,7 @@ def runit(start,end):
         startN  = Algorithm.get_closest_node(G,start)
         endN = Algorithm.get_closest_node(G,end)
 
-        p = Algorithm.get_all_paths(G, startN, endN, 'length')
+        p = Algorithm.get_from_all_paths(G, startN, endN, 'length')
 
         return  Algorithm.get_lat_long(G, p)
     else:

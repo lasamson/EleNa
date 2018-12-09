@@ -117,7 +117,7 @@ def get_euclidean_distance(G, start, end):
     return dist
 
 
-def get_all_paths(G, start, end, percent, max_ele=True):
+def get_from_all_paths(G, start, end, percent, max_ele=True):
     min_distance = get_path_length(G, get_shortest_path(G, start, end))
     shortest_paths = list(nx.all_shortest_paths(G, start, end))
     max_path_length = (1.0 + percent) * min_distance
