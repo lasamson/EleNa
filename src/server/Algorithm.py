@@ -74,8 +74,8 @@ def get_path_length(G, path):
 def get_shortest_path(G, start, end, option):
     queue = []
     heappush(queue, (0, start))
-    revPath = []
-    cost = []
+    revPath = {}
+    cost = {}
     revPath[start] = None
     cost[start] = 0
 
@@ -91,7 +91,7 @@ def get_shortest_path(G, start, end, option):
                 curCost = get_path_elevation(G, cur, nxt)
             if curCost > 0:
                 new_cost += curCost
-            if new_cost < cost[nxt] or nxt not in cost:
+            if  nxt not in cost or new_cost < cost[nxt] :
                 cost[nxt] = new_cost
                 heappush(queue, (new_cost, nxt))
                 revPath[nxt] = current
