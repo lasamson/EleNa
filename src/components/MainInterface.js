@@ -118,8 +118,22 @@ const muiTheme = createMuiTheme({
 });
 
 class MainInterface extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderRoute: false
+    }
+  }
+
   render() {
     const { classes } = this.props;
+    let map;
+    if(this.state.renderRoute) {
+      map = <MapView route={this.state.route}></MapView>
+    } else {
+      map = <MapView></MapView>
+    }
 
     return (
       <div className={classes.root}>
@@ -205,7 +219,7 @@ class MainInterface extends React.Component {
           </Button>
         </Drawer>
         <main className={classes.content}>
-        <MapView></MapView>
+            {map}
         </main>
       </div>
     ); }
@@ -214,7 +228,7 @@ class MainInterface extends React.Component {
 
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-125")[0].getAttribute("aria-valuenow")) + 100;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-91")[0].getAttribute("aria-valuenow")) + 100;
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',
@@ -230,7 +244,12 @@ class MainInterface extends React.Component {
           })
         })
         .then(res => res.json())
-        .then(json => console.log(JSON.stringify(json)));
+        .then(json => {
+            this.setState({
+              route: json["Route"],
+              renderRoute: true
+            });
+        });
     }
   }
 
