@@ -28,3 +28,7 @@ def get_elevation_gain(G, u, v):
 
 def get_length(G, u, v):
     return G.edges[u, v, 0]['length']
+
+
+def get_shortest_path(G,):
+    

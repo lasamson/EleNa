@@ -26,13 +26,13 @@ def get_map(city, state):
 
     if projected_file_path.is_file() and file_path.is_file():
         graph = pkl.load(open(file_name, 'rb'))
-        print type(graph)
         return pkl.load(open(file_name, "rb")), pkl.load(open(projected_file_name, "rb"))
     else:
         query = {'city': city, 'state': state, 'country': 'USA'}
         graph = ox.graph_from_place(query, network_type='drive')
         graph = ox.add_node_elevations(graph, "AIzaSyCPFbx7dhPoxlSRRN4okxhibuu0E_7DUWI")
         graph = ox.add_edge_grades(graph)
+
         pkl.dump(graph, open(file_name, "wb"))
         graph_proj = ox.project_graph(graph)
         pkl.dump(graph_proj, open(projected_file_name, "wb"))
