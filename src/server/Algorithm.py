@@ -109,8 +109,8 @@ def get_shortest_path(G, start, end, option='length'):
 
 
 def get_euclidean_distance(G, start, end):
-    x1, y1 = g.nodes()[start]['x'], g.nodes()[start]['y']
-    x2, y2 = g.nodes()[end]['x'], g.nodes()[end]['y']
+    x1, y1 = G.nodes()[start]['x'], G.nodes()[start]['y']
+    x2, y2 = G.nodes()[end]['x'], G.nodes()[end]['y']
 
     dist = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
 
