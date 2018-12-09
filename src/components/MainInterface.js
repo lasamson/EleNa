@@ -16,7 +16,7 @@ const mytheme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#0097A7',
+      main: '#4285F4',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -45,6 +45,8 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     margin: 0,
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    backgroundColor: mytheme.palette.primary.main
   },
   content: {
     flexGrow: 1,
@@ -59,7 +61,11 @@ const styles = theme => ({
     padding: [0],
     width: '20%',
     display: 'flex',
-    marginLeft: '40%'
+    marginLeft: '40%',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+  },
+  goText: {
+    color: '#ffffff'
   }
 });
 
@@ -96,7 +102,7 @@ class MainInterface extends React.Component {
           <ElevationToggles></ElevationToggles>
           <PercentageSlider></PercentageSlider>
           <Button variant="contained" className={classes.button} onClick={() => { this.sendRequest() }}>
-            Go!
+          <span className={classes.goText}>Go!</span>
           </Button>
         </Drawer>
         <main className={classes.content}>
