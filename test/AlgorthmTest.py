@@ -23,14 +23,15 @@ class AlgorithmTest(unittest.TestCase):
 
     def test_generate_path(self):
         self.assertEqual(get_shortest_path(self.map, 66719742, 66613427, 'length'),[66719742, 66678348, 66613427],'wrong shortest path',)
+
     def test_get_path_elevation(self):
-        self.assertEqual(get_path_elevation(get_shortest_path(self.map, 66719742, 66613427, 'length')),3,'wrong path elevation',)
-        self.assertEqual(get_path_elevation([66719742, 66678348, 66613427]),3,'wrong path elevation',)
+        self.assertEqual(get_path_elevation(self.map,get_shortest_path(self.map, 66719742, 66613427, 'length')),3,'wrong path elevation',)
+        self.assertEqual(get_path_elevation(self.map,[66719742, 66678348, 66613427]),3,'wrong path elevation',)
 
     def test_get_path_length(self):
-        self.assertEqual(get_path_length(get_shortest_path(self.map, 66719742, 66613427, 'length')), 3,
+        self.assertEqual(get_path_length(self.map,get_shortest_path(self.map, 66719742, 66613427, 'length')), 696.1949999999999,
                          'wrong path length', )
-        self.assertEqual(get_path_length([66719742, 66678348, 66613427]), 3, 'wrong path length', )
+        self.assertEqual(get_path_length(self.map,[66719742, 66678348, 66613427]), 696.1949999999999, 'wrong path length', )
 
     # def test_elevation_value(self):
     #     self.assertEqual(self.map.nodes[5637885552]['elevation']
