@@ -31,7 +31,15 @@ def get_elevation_gain(G, start, end):
 def get_length(G, start, end):
     return G.edges[start, end, 0]['length']
 
-def get_closest_node_from_gps(G,x,y):
+def is_gps_in_map(G,(lat, lng)):
+    n, d = ox.get_nearest_node(G, (lat, lng), return_dist=True)
+    if d > 10000:
+        return False
+    return True
+
+def get_closest_node(G,(lat, lng)):
+    return ox.get_nearest_node(G, (lat, lng))
+
 
 def generate_path(revPath, start, end):
     path = []
