@@ -228,7 +228,7 @@ class MainInterface extends React.Component {
 
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-91")[0].getAttribute("aria-valuenow")) + 100;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-121")[0].getAttribute("aria-valuenow")) + 100;
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',
