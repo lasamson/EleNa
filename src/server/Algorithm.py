@@ -22,4 +22,9 @@ from heapq import *
 from itertools import count
 
 
-def get_shortest_path(graph, source, target, weight='length'):
+def get_elevation_gain(G, u, v):
+    return G.nodes[u]['elevation'] - G.nodes[v]['elevation']
+
+
+def get_length(G, u, v):
+    return G.edges[u, v, 0]['length']
