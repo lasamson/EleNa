@@ -118,7 +118,7 @@ def get_euclidean_distance(G, start, end):
 
 
 def get_all_paths(G, start, end, percent, max_ele=True):
-    min_distance = get_path_length(g, get_shortest_path(G, start, end))
+    min_distance = get_path_length(G, get_shortest_path(G, start, end))
     shortest_paths = list(nx.all_shortest_paths(G, start, end))
     max_path_length = (1.0 + percent) * min_distance
 
@@ -128,7 +128,7 @@ def get_all_paths(G, start, end, percent, max_ele=True):
         if path_dist > max_path_length:
             print(min_distance, max_path_length)
             continue
-        elevation_gain[get_path_elevation(g, p)] = p
+        elevation_gain[get_path_elevation(G, p)] = p
 
     ordered_paths = OrderedDict(sorted(elevation_gain.items()))
 
