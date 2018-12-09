@@ -32,7 +32,7 @@ def get_length(G, u, v):
 
 def get_shortest_path(G,):
     
-def get_path(came_from, origin, destination):
+def get_path_betwen_two_point(came_from, origin, destination):
     path = []
     p = destination
     path.append(p)
