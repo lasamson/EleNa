@@ -8,11 +8,11 @@ class AlgorithmTest(unittest.TestCase):
     def setUp(self):
         self.map, self.mapP = get_map('Amherst', 'MA')
 
-    # def test_get_elevation_gain(self):
-    #     self.assertEqual(get_elevation_gain(self.map,66719742,66745002),16,'incorrect n')
-    #
-    # def test_get_length(self):
-    #     self.assertEqual(get_length(self.map,66719742, 66714920), 150.191, 'incorrect length')
+    def test_get_elevation_gain(self):
+        self.assertEqual(get_elevation_gain(self.map,66719742,66745002),16,'incorrect n')
+
+    def test_get_length(self):
+        self.assertEqual(get_length(self.map,66719742, 66714920), 150.191, 'incorrect length')
 
     def test_is_gps_in_map(self):
         self.assertFalse(is_gps_in_map(self.map, (-1, 1)))
@@ -33,15 +33,6 @@ class AlgorithmTest(unittest.TestCase):
                          'wrong path length', )
         self.assertEqual(get_path_length(self.map,[66719742, 66678348, 66613427]), 696.1949999999999, 'wrong path length', )
 
-    # def test_elevation_value(self):
-    #     self.assertEqual(self.map.nodes[5637885552]['elevation']
-    #                      , 99,
-    #                      'incorrect elevation')
-    #
-    # def test_output_value(self):
-    #     self.assertEqual(self.map.nodes[5637885552]
-    #                      , {'y': 42.3850694, 'x': -72.5143306, 'elevation': 99, 'osmid': 5637885552},
-    #                      'incorrect value')
     def tearDown(self):
         os.remove('AmherstMA.pkl')
         os.remove('AmherstMA_projected.pkl')
