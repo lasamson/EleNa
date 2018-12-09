@@ -74,6 +74,11 @@ def get_path_length(G, path):
 
     return total_length
 
+def get_lat_long(G, path):
+    coord = []
+    for node in path:
+        coord.append((G.nodes[node]['y'], G.nodes[node]['x']))
+    return coord
 
 def get_shortest_path(G, start, end, option='length'):
     queue = []
