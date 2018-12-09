@@ -73,7 +73,7 @@ def get_path_length(G, path):
     return total_length
 
 
-def get_shortest_path(G, start, end, option):
+def get_shortest_path(G, start, end, option='length'):
     queue = []
     heappush(queue, (0, start))
     revPath = []
@@ -108,3 +108,8 @@ def get_euclidean_distance(G, start, end):
     dist = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
 
     return dist
+
+
+def get_all_paths(G, start, end):
+    shortest_paths = list(nx.all_shortest_paths(G, start, end))
+    min_distance = get_shortest_path(G, start, end)
