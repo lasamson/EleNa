@@ -31,13 +31,15 @@ def get_elevation_gain(G, start, end):
 def get_length(G, start, end):
     return G.edges[start, end, 0]['length']
 
-def is_gps_in_map(G,(lat, lng)):
+
+def is_gps_in_map(G, (lat, lng)):
     n, d = ox.get_nearest_node(G, (lat, lng), return_dist=True)
     if d > 10000:
         return False
     return True
 
-def get_closest_node(G,(lat, lng)):
+
+def get_closest_node(G, (lat, lng)):
     return ox.get_nearest_node(G, (lat, lng))
 
 
@@ -71,7 +73,7 @@ def get_path_length(G, path):
     return total_length
 
 
-def get_shortest_path(G, start, end, option):
+def get_shortest_path(G, start, end, option='length'):
     queue = []
     heappush(queue, (0, start))
     revPath = {}
@@ -97,3 +99,17 @@ def get_shortest_path(G, start, end, option):
                 revPath[nxt] = current
 
     return generate_path(revPath, start, end)
+
+
+def get_euclidean_distance(G, start, end):
+    x1, y1 = g.nodes()[start]['x'], g.nodes()[start]['y']
+    x2, y2 = g.nodes()[end]['x'], g.nodes()[end]['y']
+
+    dist = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+
+    return dist
+
+
+def get_all_paths(G, start, end):
+    shortest_paths = list(nx.all_shortest_paths(G, start, end))
+    min_distance = get_shortest_path(G, start, end)
