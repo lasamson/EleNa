@@ -22,6 +22,7 @@ from heapq import *
 from itertools import count
 
 from heapq import *
+from collections import OrderedDict
 
 
 def get_elevation_gain(G, start, end):
@@ -111,5 +112,13 @@ def get_euclidean_distance(G, start, end):
 
 
 def get_all_paths(G, start, end):
-    shortest_paths = list(nx.all_shortest_paths(G, start, end))
     min_distance = get_shortest_path(G, start, end)
+    shortest_paths = list(nx.all_shortest_paths(G, start, end))
+
+    elevation_gain = {}
+    for p in shortest_paths:
+        elevation_gain[get_path_elevation(p)] = p
+
+    ordered_paths = OrderedDict(sorted(elevation_gain.items()))
+
+    keys = ordered_paths.keys()
