@@ -2,7 +2,7 @@ import Algorithm
 import MakeMapsOpen
 
 
-def find_route(city, state, start, end, percentage)checked:
+def find_route(city, state, start, end, percentage):
 
     G, G_projected = MakeMapsOpen.get_map(city, state)
 
@@ -15,3 +15,5 @@ def find_route(city, state, start, end, percentage)checked:
         return Algorithm.get_lat_long(G, p)
     else:
         print "not in map"
+
+print (find_route("Amherst","MA",(42.368749, -72.49561),(42.3762084, -72.5196859),0.5))
