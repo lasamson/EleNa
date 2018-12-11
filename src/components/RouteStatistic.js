@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
     card: {
     //   minWidth: 300,
-      height: 150,
+      // height: 150,
       width: 500,
       margin: '0 auto',
       marginTop: 20,
@@ -21,7 +21,7 @@ const styles = {
       transform: 'scale(0.8)',
     },
     detailTitle: {
-      fontWeight: 600
+      fontWeight: 700
     },
     title: {
       fontSize: 14,
@@ -40,7 +40,7 @@ function RouteStatistic(props) {
     const bull = <span className={classes.bullet}>•</span>;
 
     return (
-        <Slide direction="right" in={true} mountOnEnter unmountOnExit timeeout="2000">
+        <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout="1000">
             <Card className={classes.card}>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2" className="detailTitle">
