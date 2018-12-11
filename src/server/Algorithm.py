@@ -27,7 +27,8 @@ import numpy as np
 
 
 def get_elevation_gain(G, start, end):
-    print(G.nodes[start]['elevation'] - G.nodes[end]['elevation'])
+    if start == end:
+        return 0
     return G.nodes[start]['elevation'] - G.nodes[end]['elevation']
 
 
@@ -205,10 +206,13 @@ def astar_path(G, source, target, percentage, max_ele=False):
     if heuristic is None:
         # The default heuristic is h=0 - same as Dijkstra's algorithm
         def heuristic(u, v):
-            return 0
+            return get_elevation_gain(G, u, v)
 
     push = heappush
     pop = heappop
+
+    revPath = {}
+    revPath[source] = None
 
     c = 1
     queue = [(0, c, source, 0, None)]
@@ -244,6 +248,7 @@ def astar_path(G, source, target, percentage, max_ele=False):
                 if qcost <= ncost:
                     continue
             else:
+                # print(neighbor, target)
                 h = heuristic(neighbor, target)
             enqueued[neighbor] = ncost, h
             c += 1

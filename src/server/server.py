@@ -10,6 +10,7 @@ app = Flask(__name__)
 CORS(app)
 geolocator = Nominatim(user_agent="elena")
 
+
 def get_city_country(address):
     """ Get city and state from address"""
     address_split = address.split(",")
@@ -42,7 +43,7 @@ def get_route():
     print(city, state)
 
     # find the best path between source & destination based on elevation
-    route = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
+    route, distance, elevation = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
 
     # send a response back (w/ the route)
     response = jsonify({'Route': route})
