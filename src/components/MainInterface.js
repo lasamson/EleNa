@@ -153,7 +153,6 @@ class MainInterface extends React.Component {
     let map;
     let routeStats;
     let routeDirections;
-    let footer;
 
     console.log(this.state);
 
@@ -161,7 +160,6 @@ class MainInterface extends React.Component {
       map = <MapView route={this.state.route}></MapView>
       routeStats = <RouteStastic distance={this.state.distance} elevation={this.state.elevation}></RouteStastic>
       routeDirections = <RouteDirections></RouteDirections>
-      footer = <Footer></Footer>
     } else {
       map = <MapView></MapView>
     }
@@ -251,7 +249,6 @@ class MainInterface extends React.Component {
           </Button>
 
           {routeStats}
-          {/* {footer} */}
 
         </Drawer>
 
