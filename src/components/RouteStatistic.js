@@ -43,8 +43,6 @@ const styles = {
 
 function RouteStatistic(props) {
 
-    console.log("Props: ", props);
-
     const { classes } = props;
     const bull = <span className={classes.bullet}>•</span>;
 
