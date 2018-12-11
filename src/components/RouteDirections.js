@@ -12,12 +12,16 @@ const styles = {
       height: 250,
       width: 500,
       margin: '0 auto',
-      marginTop: 50,
+      marginTop: 20,
+      borderRadius: 10
     },
     bullet: {
       display: 'inline-block',
       margin: '0 2px',
       transform: 'scale(0.8)',
+    },
+    detailTitle: {
+        fontWeight: 700
     },
     title: {
       fontSize: 14,
@@ -37,7 +41,7 @@ function RouteDirections(props) {
         <Slide direction="right" in={true} mountOnEnter unmountOnExit timeeout="2000">
             <Card className={classes.card}>
                 <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" component="h2" className="detailTitle">
                     Route Directions
                 </Typography>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
