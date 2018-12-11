@@ -14,8 +14,8 @@ def find_route(city, state, start, end, percentage):
         # path, dist, elev = Algorithm.astar_path(G, startN, endN, percentage, max_ele=False)
         # print(q, r)
         # print('path = ', path)
-        print(Algorithm.get_lat_long(G, path))
-        return Algorithm.get_lat_long(G, path), dist, elev
+        # print(Algorithm.get_lat_long(G, path))
+        # return Algorithm.get_lat_long(G, path), dist, elev
 
         p = Algorithm.get_from_djikstra(G, startN, endN, percentage,True)
         print Algorithm.get_path_length(G,p)
