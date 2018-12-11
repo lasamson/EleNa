@@ -17,10 +17,7 @@ def find_route(city, state, start, end, percentage):
         # print(Algorithm.get_lat_long(G, path))
         # return Algorithm.get_lat_long(G, path), dist, elev
 
-        a,b,c = Algorithm.get_from_djikstra(G, startN, endN, percentage,True)
-        print Algorithm.get_path_length(G,p)
-        print Algorithm.get_path_elevation(G,p)
-
+        return Algorithm.get_from_djikstra(G, startN, endN, percentage,True)
     else:
         print "not in map"
 
