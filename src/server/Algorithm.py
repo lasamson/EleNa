@@ -47,6 +47,17 @@ def get_closest_node(G, (lat, lng)):
     return ox.get_nearest_node(G, (lat, lng))
 
 
+def getpath(revPath, origin, destination):
+    route_by_length_minele = []
+    p = destination
+    route_by_length_minele.append(p)
+    while p != origin:
+        p = revPath[p]
+        route_by_length_minele.append(p)
+    route_by_length_minele = route_by_length_minele[::-1]
+    return route_by_length_minele
+
+
 def generate_path(revPath, start, end):
     path = []
     n = end
@@ -97,16 +108,16 @@ def get_shortest_path(G, start, end, option='length'):
         if current == end:
             break
         for cur, nxt, data in G.edges(current, data=True):
-            new_cost = cost[current]
+            cur_cost = cost[current]
             if option == 'length':
                 curCost = get_length(G, cur, nxt)
             elif option == 'elevation':
                 curCost = get_path_elevation(G, cur, nxt)
             if curCost > 0:
-                new_cost += curCost
-            if nxt not in cost or new_cost < cost[nxt]:
-                cost[nxt] = new_cost
-                heappush(queue, (new_cost, nxt))
+                cur_cost += curCost
+            if nxt not in cost or cur_cost < cost[nxt]:
+                cost[nxt] = cur_cost
+                heappush(queue, (cur_cost, nxt))
                 revPath[nxt] = current
 
     return generate_path(revPath, start, end)
@@ -116,7 +127,7 @@ def get_euclidean_distance(G, start, end):
     x1, y1 = G.nodes()[start]['x'], G.nodes()[start]['y']
     x2, y2 = G.nodes()[end]['x'], G.nodes()[end]['y']
 
-    dist = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+    dist = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
 
     return dist
 
@@ -150,50 +161,43 @@ def get_from_all_paths(G, start, end, percent, max_ele=True):
 
 def get_dis_from_percentage(min_distance, percent):
     if percent > 1:
-        return (100.0 + percent) / 100.0 * min_distance
-    return (1.0 + percent) * min_distance
+        return (percent) / 100.0 * min_distance
+    return (percent) * min_distance
 
-
-def get_dis_from_percentage(max_distance):
-    return max_distance
 
 
 def get_from_djikstra(G, start, end, percent, max_ele=True):
     min_distance = get_path_length(G, get_shortest_path(G, start, end))
-    shortest_paths = list(nx.all_shortest_paths(G, start, end))
     max_path_length = get_dis_from_percentage(min_distance, percent)
-
-    elevation_gain = {}
-
+    #
     queue = []
     heappush(queue, (0, start))
     revPath = {}
-    visited_cost = {}
-    ele = {}
+    cost = {}
+    cost_ele = {}
     revPath[start] = None
-    visited_cost[start] = 0
-    ele[start] = 0
-
-    while len(queue) > 0:
-        (val, current) = heappop(queue)
-        if current == end:
-            if visited_cost < max_path_length:
+    cost[start] = 0
+    cost_ele[start] = 0
+    while len(queue) != 0:
+        (val, cur) = heappop(queue)
+        if cur == end:
+            if cost[cur] <= max_path_length:
                 break
-        for cur, nextnode, data in G.edges(current, data=True):
-            cost = visited_cost[cur] + get_length(G, cur, nextnode)
-            cur_elev = ele[cur]
-            ele_cost = get_elevation_gain(G, cur, nextnode)
-            if ele_cost > 0:
-                cur_elev += ele_cost
-            if nextnode not in cost or cost < visited_cost[nextnode]:
-                visited_cost[nextnode] = cur_elev
-                ele[nextnode] = cost
-                priority = cur_elev
-                if max_ele == False:
-                    priority = priority
-                heappush(queue, (priority, nextnode))
-                revPath[nextnode] = current
-
+        for cur, next, data in G.edges(cur, data=True):
+            cur_cost = cost[cur] + get_length(G, cur, next)
+            cur_ecost = cost_ele[cur]
+            ecost = get_elevation_gain(G, cur, next)
+            if ecost > 0:
+                cur_ecost = cur_ecost + ecost
+            if next not in cost or cur_cost < cost[next]:
+                cost_ele[next] = cur_ecost
+                cost[next] = cur_cost
+                if max_ele:
+                    priority = -cur_ecost
+                else:
+                    priority = cur_ecost
+                heappush(queue, (priority, next))
+                revPath[next] = cur
     return generate_path(revPath, start, end)
 
 
