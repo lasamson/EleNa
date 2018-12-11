@@ -67,9 +67,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     position: 'relative',
     padding: [0],
-    width: '20%',
+    width: '25%',
+    height: '5.2%',
+    margin: '0 auto',
     display: 'flex',
-    marginLeft: '40%',
+    borderRadius: 10,
+    // marginLeft: '40%',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     fontWeight: 'bold',
     marginTop: '20px'
@@ -241,8 +244,10 @@ class MainInterface extends React.Component {
     sendRequest() {
 
         // get data from forrm fields
-        const source = document.getElementById('source').value;
-        const destination = document.getElementById('destination').value;
+        // const source = document.getElementById('source').value;
+        const source = "81 Belchertown Road, Amherst, MA";
+        // const destination = document.getElementById('destination').value;
+        const destination = "31 N Pleasant Street, Amherst, MA";
         const percentage = Number(document.getElementsByClassName("MuiSlider-root-119")[0].getAttribute("aria-valuenow")) + 100;
         const max_min = document.getElementsByClassName("MuiToggleButton-selected-111")[0].firstElementChild.textContent.toLowerCase();
 

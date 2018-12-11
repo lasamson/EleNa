@@ -20,7 +20,8 @@ const styles = {
     color: '#ffffff',
     position: 'relative',
     width: '40%',
-    marginLeft: '30%',
+    marginLeft: '33%',
+    // margin: '0 auto',
     textAlign: 'center',
     marginTop: '10px',
     fontWeight: 'bold'
