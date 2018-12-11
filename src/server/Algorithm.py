@@ -198,7 +198,9 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
                     priority = cur_ecost
                 heappush(queue, (priority, next))
                 revPath[next] = cur
-    return generate_path(revPath, start, end)
+    path = generate_path(revPath, start, end)
+
+    return get_lat_long(path),get_path_length(path), get_path_elevation(path)
 
 
 def astar_path(G, source, target, percentage, max_ele=False):
