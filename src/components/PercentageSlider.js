@@ -16,22 +16,20 @@ const styles = {
     width: '70%',
     marginLeft: '15%'
   },
-  inlineBlock: {
-    width: '70%',
-    marginLeft: '15%',
-    display: 'inline-block'
-  },
-  labelText1: {
-    alignSelf: 'flex-start',
-  },
-  labelText2: {
-    justifyContent: 'flex-end',
+  sliderValue: {
+    color: '#ffffff',
+    position: 'relative',
+    width: '40%',
+    marginLeft: '30%',
+    textAlign: 'center',
+    marginTop: '10px',
+    fontWeight: 'bold'
   }
 };
 
 class PercentageSlider extends React.Component {
   state = {
-    value: 50,
+    value: 50
   };
 
   handleChange = (event, value) => {
@@ -51,7 +49,7 @@ class PercentageSlider extends React.Component {
           aria-labelledby="label"
           onChange={this.handleChange}
         />
-        {/* <Typography classes={{ container: classes.labelText2}}>200 %</Typography> */}
+        <span className={classes.sliderValue}>{100 + parseInt(this.state.value.toFixed(2))}% of shortest distance</span>
       </div>
     );
   }
