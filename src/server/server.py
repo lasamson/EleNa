@@ -35,8 +35,8 @@ def get_route():
     percentage = float(content["Percentage"])
 
     # convert the source,destination addresses to lat,lng coordinates
-    source_lat, source_lng = convert_addresss_to_lat_lng(source)
-    dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
+    # source_lat, source_lng = convert_addresss_to_lat_lng(source)
+    # dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
 
     # get the city, country of the source
     city, state = get_city_country(source)
