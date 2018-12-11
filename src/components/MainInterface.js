@@ -20,7 +20,7 @@ const mytheme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#4285F4',
+      main: '#1f2129',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -47,6 +47,7 @@ const styles = theme => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: '35vw',
+    // maxHeight: '100vh',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
