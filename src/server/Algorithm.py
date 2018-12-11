@@ -74,11 +74,13 @@ def get_path_length(G, path):
 
     return total_length
 
+
 def get_lat_long(G, path):
     coord = []
     for node in path:
         coord.append((G.nodes[node]['y'], G.nodes[node]['x']))
     return coord
+
 
 def get_shortest_path(G, start, end, option='length'):
     queue = []
@@ -120,7 +122,9 @@ def get_euclidean_distance(G, start, end):
 def get_from_all_paths(G, start, end, percent, max_ele=True):
     min_distance = get_path_length(G, get_shortest_path(G, start, end))
     shortest_paths = list(nx.all_shortest_paths(G, start, end))
-    max_path_length = get_dis_from_percentage(min_distance,percent)
+
+    print(percent)
+    max_path_length = (1.0 + float(percent)) * min_distance
 
     elevation_gain = {}
     for p in shortest_paths:

@@ -14,7 +14,9 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     margin: 0,
-    background: theme.palette.background.default,
+    position: 'relative',
+    width: '30%',
+    marginLeft: '37%'
   },
 });
 
@@ -34,11 +36,11 @@ class ElevationToggles extends React.Component {
 
     return (
           <div className={classes.toggleContainer}>
-            <ToggleButtonGroup value={formats} onChange={this.handleFormat}>
-              <ToggleButton value="bold">
+            <ToggleButtonGroup value={formats} exclusive onChange={this.handleFormat}>
+              <ToggleButton value="bold" data="min-elevation">
                 Min
               </ToggleButton>
-              <ToggleButton value="italic">
+              <ToggleButton value="italic" data="max-elevation">
                 Max
               </ToggleButton>
             </ToggleButtonGroup>

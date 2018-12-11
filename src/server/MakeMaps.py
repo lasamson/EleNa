@@ -29,7 +29,7 @@ def get_map(city, state):
         return pkl.load(open(file_name, "rb")), pkl.load(open(projected_file_name, "rb"))
     else:
         query = {'city': city, 'state': state, 'country': 'USA'}
-        graph = ox.graph_from_place(query, network_type='drive')
+        graph = ox.graph_from_place(query, network_type='bike')
         graph = ox.add_node_elevations(graph, "AIzaSyCPFbx7dhPoxlSRRN4okxhibuu0E_7DUWI")
         graph = ox.add_edge_grades(graph)
 
@@ -38,24 +38,23 @@ def get_map(city, state):
         pkl.dump(graph_proj, open(projected_file_name, "wb"))
         return graph, graph_proj
 
+
 def check_point_within_city(start, end):
 
     os.graph_from_place
 
 
-
-
 def add_node_elevations_open(G, max_locations_per_batch=180,
-                        pause_duration=0.02): # pragma: no cover
+                             pause_duration=0.02):  # pragma: no cover
 
     url_template = 'https://api.open-elevation.com/api/v1/lookup?locations={}'
 
-    node_points = pd.Series({node:'{:.5f},{:.5f}'.format(data['y'], data['x']) for node, data in G.nodes(data=True)})
+    node_points = pd.Series({node: '{:.5f},{:.5f}'.format(data['y'], data['x']) for node, data in G.nodes(data=True)})
     log('Requesting node elevations from the API in {} calls.'.format(math.ceil(len(node_points) / max_locations_per_batch)))
 
     results = []
     for i in range(0, len(node_points), max_locations_per_batch):
-        chunk = node_points.iloc[i : i + max_locations_per_batch]
+        chunk = node_points.iloc[i: i + max_locations_per_batch]
         locations = '|'.join(chunk)
         url = url_template.format(locations)
         log(len(url))
@@ -88,7 +87,7 @@ def add_node_elevations_open(G, max_locations_per_batch=180,
     df = pd.DataFrame(node_points, columns=['node_points'])
     df['elevation'] = [result['elevation'] for result in results]
     log(df['elevation'])
-    df['elevation'] = df['elevation'].round(3) # round to millimeter
+    df['elevation'] = df['elevation'].round(3)  # round to millimeter
     nx.set_node_attributes(G, name='elevation', values=df['elevation'].to_dict())
     log('Added elevation data to all nodes.')
 
@@ -104,4 +103,4 @@ def clean(city, state):
 
 
 get_map('Amherst', 'MA')
-clean('Amherst', 'MA')
+# clean('Amherst', 'MA')

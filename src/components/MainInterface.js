@@ -10,8 +10,30 @@ import PercentageSlider from './PercentageSlider';
 import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 import MapView from './MapView';
+import RouteStastic from './RouteStatistic';
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import TextField from '@material-ui/core/TextField';
 
-const drawerWidth = 425;
+const mytheme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#757ce8',
+      main: '#4285F4',
+      dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+  spacing: {
+    unit: '15%'
+  }
+});
 
 const styles = theme => ({
   root: {
@@ -23,12 +45,15 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
-    width: drawerWidth,
+    width: '35vw',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
     margin: 0,
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    backgroundColor: mytheme.palette.primary.main,
+    overflowX: 'hidden'
   },
   content: {
     flexGrow: 1,
@@ -39,12 +64,81 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    position: 'relative',
+    padding: [0],
+    width: '20%',
+    display: 'flex',
+    marginLeft: '40%',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    fontWeight: 'bold',
+    marginTop: '20px'
+    // background: '#3267D6'
+  },
+  goText: {
+    color: '#ffffff'
+  },
+  inputStyle: {
+    // borderBottom: '2px solid white',
+    color: '#ffffff'
+  },
+  textField: {
+    position: 'relative',
+    marginLeft: mytheme.spacing.unit,
+    marginRight: mytheme.spacing.unit,
+    width: '70%',
+    textAlign: 'center'
+  },
+
+  cssLabel: {
+    color : 'white'
+  },
+
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `white !important`,
+    }
+  },
+
+  cssFocused: {color: 'white'},
+
+  notchedOutline: {
+    borderWidth: '1px',
+    borderColor: 'white !important'
+  },
+});
+
+const muiTheme = createMuiTheme({
+  overrides: {
+    MuiInput: {
+      underline: {
+        '&:after': {
+          backgroundColor: '#ffffff',
+        }
+      },
+    },
   }
 });
 
 class MainInterface extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderRoute: false
+    }
+  }
+
   render() {
     const { classes } = this.props;
+    let map;
+    let routeStats;
+
+    if(this.state.renderRoute) {
+      map = <MapView route={this.state.route}></MapView>
+      routeStats = <RouteStastic></RouteStastic>
+    } else {
+      map = <MapView></MapView>
+    }
 
     return (
       <div className={classes.root}>
@@ -56,39 +150,96 @@ class MainInterface extends React.Component {
           }}
         >
           <h1 className="elenaLogo">EleNa</h1>
-          <Input
+
+          {/* <Input
             placeholder="Source"
             id="source"
-            className={classes.input}
+            // className={classes.input}
+            classes = {{
+              input: classes.inputStyle
+            }}
+            disableUnderline={true}
             inputProps={{
               'aria-label': 'Description',
             }}
-          />
-          <Input
+          /> */}
+          {/* <MuiThemeProvider muiTheme={muiTheme}> */}
+          {/* <Input
             placeholder="Destination"
             id="destination"
-            className={classes.input}
+            // className={classes.input}
+            classes = {{
+              input: classes.inputStyle
+            }}
+            disableUnderline={true}
             inputProps={{
               'aria-label': 'Description',
             }}
-          />
+          /> */}
+          <TextField
+          id="source"
+          label="Source"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            classes: {
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            },
+          }}
+          InputProps={{
+            classes: {
+              root: classes.cssOutlinedInput,
+              focused: classes.cssFocused,
+              notchedOutline: classes.notchedOutline,
+            },
+          }}
+        />
+        <TextField
+          id="destination"
+          label="Destination"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          InputLabelProps={{
+            classes: {
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            },
+          }}
+          InputProps={{
+            classes: {
+              root: classes.cssOutlinedInput,
+              focused: classes.cssFocused,
+              notchedOutline: classes.notchedOutline,
+            },
+          }}
+        />
+          {/* </MuiThemeProvider> */}
           <ElevationToggles></ElevationToggles>
           <PercentageSlider></PercentageSlider>
           <Button variant="contained" className={classes.button} onClick={() => { this.sendRequest() }}>
-            Go!
+          <span className={classes.goText}>Go!</span>
           </Button>
+
+          {routeStats}
+
         </Drawer>
+
         <main className={classes.content}>
-        <MapView></MapView>
+            {map}
         </main>
       </div>
     ); }
 
     sendRequest() {
 
+        // get data from forrm fields
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-122")[0].getAttribute("aria-valuenow")) + 100;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-119")[0].getAttribute("aria-valuenow")) + 100;
+        const max_min = document.getElementsByClassName("MuiToggleButton-selected-111")[0].firstElementChild.textContent.toLowerCase();
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',
@@ -99,12 +250,17 @@ class MainInterface extends React.Component {
           body: JSON.stringify({
             Source: source,
             Destination: destination,
-            Max_min: 'test3',
+            Max_min: max_min,
             Percentage: percentage
           })
         })
         .then(res => res.json())
-        .then(json => console.log(JSON.stringify(json)));
+        .then(json => {
+            this.setState({
+              route: json["Route"],
+              renderRoute: true
+            });
+        });
     }
   }
 
