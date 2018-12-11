@@ -20,7 +20,7 @@ const mytheme = createMuiTheme({
   palette: {
     primary: {
       light: '#757ce8',
-      main: '#4285F4',
+      main: '#1f2129',
       dark: '#002884',
       contrastText: '#fff',
     },
@@ -76,7 +76,8 @@ const styles = theme => ({
     // marginLeft: '40%',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     fontWeight: 'bold',
-    marginTop: '3%'
+    marginTop: '3%',
+    marginBottom: '10%'
     // background: '#3267D6'
   },
   goText: {
@@ -93,7 +94,8 @@ const styles = theme => ({
     width: '70%',
     textAlign: 'center',
     marginTop: 10,
-    color: "white !important"
+    color: "white !important",
+    marginBottom: 30
   },
   textFieldDestination: {
     position: 'relative',
@@ -101,7 +103,8 @@ const styles = theme => ({
     marginRight: mytheme.spacing.unit,
     width: '70%',
     textAlign: 'center',
-    color: "white !important"
+    color: "white !important",
+    marginBotom: 30
   },
 
   cssLabel: {
@@ -245,8 +248,7 @@ class MainInterface extends React.Component {
           </Button>
 
           {routeStats}
-
-          {routeDirections}
+          {/* {routeDirections} */}
 
         </Drawer>
 

@@ -1,8 +1,7 @@
-// @flow
-
-import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup, Polyline, } from '../map_components'
-
+import React, { Component } from 'react';
+import { Map, TileLayer, Marker, Popup, Polyline, } from '../map_components';
+import RoutingMachine from './RoutingMachine';
+import L from 'leaflet';
 
 export default class MapView extends React.Component {
   constructor(props) {
@@ -20,7 +19,6 @@ export default class MapView extends React.Component {
 
   componentWillReceiveProps(props) {
     let route = props["route"];
-
     this.setState({
       renderRoute: true,
       mapCenter: route[0],
@@ -32,90 +30,60 @@ export default class MapView extends React.Component {
     });
   }
 
-  componentWillMount() {
-    if (navigator.geolocation) {
-      let position = this.setPosition.bind(this);
-      navigator.geolocation.getCurrentPosition(position);
-    }
+  createMap() {
+    let map = L.map('map', {
+      center: [42.373222, -72.519852],
+      zoom: 15,
+      weight: 10,
+      layers: [
+        // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+        L.tileLayer("https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png")
+        // L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
+      ]
+    });
+    this.initial_marker = L.marker([this.state.initial_lat, this.state.initial_lng])
+    this.initial_marker.addTo(map);
+    return map;
+  }
+
+  setRouting(map) {
+    this.routingControl = L.Routing.control({itineraryClassName: "routing-directions"});
+    this.routingControl.addTo(map);
+  }
+
+  addRouting(waypoints) {
+    this.routingControl.getPlan().setWaypoints(waypoints);
+  }
+
+  componentDidMount() {
+    this.map = this.createMap();
+    this.setRouting(this.map)
   }
 
   render() {
-    let initial_position = [(this.state.initial_lat+this.state.end_lat)/2, (this.state.initial_lng + this.state.end_lng)/2]
-    let route;
-    let initial_marker;
-    let end_marker;
-
     if(this.state.renderRoute) {
-      route = <Polyline positions={this.state.route} weight={9} opacity={.5} />
-      initial_marker = <Marker key={`marker-1`} position={[this.state.initial_lat, this.state.initial_lng]}>
-        <Popup>
-          <span>Starting Point</span>
-        </Popup>
-     </Marker>;
-      end_marker = <Marker key={`marker-2`} position={[this.state.end_lat, this.state.end_lng]}>
-          <Popup>
-            <span>Destination Point</span>
-          </Popup>
-      </Marker>
+
+      this.map.removeLayer(this.initial_marker);
+
+      let waypoints = this.state.route.map(coords => {
+        return L.latLng(coords[0], coords[1])
+      });
+
+      console.log(this.state.route.length);
+
+      let filteredWaypoints = waypoints.filter(function(value, index, Arr) {
+        return index % 5 == 0;
+      });
+
+      this.addRouting(filteredWaypoints);
+      let mid_lat = this.state.route[0][0]+this.state.route[this.state.route.length-1][0]/2
+      let mid_lng = this.state.route[0][1]+this.state.route[this.state.route.length-1][1]/2
+      this.map.panTo(new L.LatLng(mid_lat, mid_lng));
     } else {
-      route = <Marker position={initial_position}></Marker>;
     }
 
     return (
-      <Map center={initial_position} zoom={this.state.zoom} style={{
-        weight: 2,
-        opacity: 1,
-        color: 'white',
-        dashArray: '3',
-        fillOpacity: 0.3,
-        fillColor: '#ffffff'
-      }}>
-        <TileLayer
-          url="https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"
-        />
-        {route}
-        {initial_marker}
-        {end_marker}
-      </Map>
-    )
+      <div id="map"></div>
+    );
   }
-
-  setPosition(position) {
-    this.setState({
-      initial_lat: position.coords.latitude,
-      initial_lng: position.coords.longitude,
-      zoom: 13
-    });
   }
-
-  // style() {
-  //   // console.log(sn);
-  //   // if (sn == feature.properties.name) {
-  //   //   return {
-  //   //     weight: 2,
-  //   //     opacity: 1,
-  //   //     color: 'white',
-  //   //     dashArray: '3',
-  //   //     fillOpacity: 0.3,
-  //   //     fillColor: '#ff0000'
-  //   //   };
-  //   // } else {
-  //   //   return {
-  //   //     weight: 2,
-  //   //     opacity: 1,
-  //   //     color: 'white',
-  //   //     dashArray: '3',
-  //   //     fillOpacity: 0.3,
-  //   //     fillColor: '#666666'
-  //   //   };
-  //   // }
-  //   return {
-  //     weight: 2,
-  //     opacity: 1,
-  //     color: 'white',
-  //     dashArray: '3',
-  //     fillOpacity: 0.3,
-  //     fillColor: '#ff0000'
-  //   };
-  // }
-}
