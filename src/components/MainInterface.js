@@ -15,7 +15,6 @@ import RouteDirections from './RouteDirections';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import TextField from '@material-ui/core/TextField';
-import Footer from './Footer';
 
 const mytheme = createMuiTheme({
   palette: {
