@@ -145,11 +145,11 @@ def get_from_all_paths(G, start, end, percent, max_ele=True):
 
     return elevation_gain[key]
 
-def get_dis_from_percentage(min_distance,percent):
-    if percent>1:
-        return (100.0 + percent)/100.0 * min_distance
-    return (1.0 + percent) * min_distance
 
+def get_dis_from_percentage(min_distance, percent):
+    if percent > 1:
+        return (percent) / 100.0 * min_distance
+    return (percent) * min_distance
 
 
 def get_from_djikstra(G, start, end, percent, max_ele=True):
@@ -163,7 +163,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     heappush(queue, (0, start))
     revPath = {}
     visited_cost = {}
-    ele ={}
+    ele = {}
     revPath[start] = None
     visited_cost[start] = 0
     ele[start] = 0
@@ -171,10 +171,10 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     while len(queue) > 0:
         (val, current) = heappop(queue)
         if current == end:
-            if visited_cost< max_path_length:
+            if visited_cost < max_path_length:
                 break
         for cur, nextnode, data in G.edges(current, data=True):
-            cost = visited_cost[cur]+get_length(G,cur,nextnode)
+            cost = visited_cost[cur] + get_length(G, cur, nextnode)
             cur_elev = ele[cur]
             ele_cost = get_elevation_gain(G, cur, nextnode)
             if ele_cost > 0:
@@ -189,5 +189,3 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
                 revPath[nextnode] = current
 
     return generate_path(revPath, start, end)
-
-
