@@ -54,7 +54,8 @@ const styles = theme => ({
     margin: 0,
     boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     backgroundColor: mytheme.palette.primary.main,
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    boxShadow: "5px 0px 5px 0px rgba(0,0,0,0.30)"
   },
   content: {
     flexGrow: 1,
@@ -83,7 +84,7 @@ const styles = theme => ({
   },
   inputStyle: {
     // borderBottom: '2px solid white',
-    color: '#ffffff'
+    color: 'white'
   },
   textFieldSource: {
     position: 'relative',
@@ -91,14 +92,16 @@ const styles = theme => ({
     marginRight: mytheme.spacing.unit,
     width: '70%',
     textAlign: 'center',
-    marginTop: 10
+    marginTop: 10,
+    color: "white !important"
   },
   textFieldDestination: {
     position: 'relative',
     marginLeft: mytheme.spacing.unit,
     marginRight: mytheme.spacing.unit,
     width: '70%',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: "white !important"
   },
 
   cssLabel: {
@@ -108,7 +111,8 @@ const styles = theme => ({
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
       borderColor: `white !important`,
-    }
+    },
+    color: "white"
   },
 
   cssFocused: {color: 'white'},
@@ -146,9 +150,11 @@ class MainInterface extends React.Component {
     let routeStats;
     let routeDirections;
 
+    console.log(this.state);
+
     if(this.state.renderRoute) {
       map = <MapView route={this.state.route}></MapView>
-      routeStats = <RouteStastic></RouteStastic>
+      routeStats = <RouteStastic distance={this.state.distance} elevation={this.state.elevation}></RouteStastic>
       routeDirections = <RouteDirections></RouteDirections>
     } else {
       map = <MapView></MapView>
@@ -253,10 +259,10 @@ class MainInterface extends React.Component {
     sendRequest() {
 
         // get data from forrm fields
-        // const source = document.getElementById('source').value;
-        const source = "81 Belchertown Road, Amherst, MA";
-        // const destination = document.getElementById('destination').value;
-        const destination = "30 Eastman Ln, Amherst, MA";
+        const source = document.getElementById('source').value;
+        // const source = "81 Belchertown Road, Amherst, MA";
+        const destination = document.getElementById('destination').value;
+        // const destination = "31 N Pleasant St, Amherst, MA";
         const percentage = Number(document.getElementsByClassName("MuiSlider-root-120")[0].getAttribute("aria-valuenow")) + 100;
         const max_min = document.getElementsByClassName("MuiToggleButton-selected-112")[0].firstElementChild.textContent.toLowerCase();
 
@@ -277,7 +283,9 @@ class MainInterface extends React.Component {
         .then(json => {
             this.setState({
               route: json["Route"],
-              renderRoute: true
+              renderRoute: true,
+              distance: json["Distance"],
+              elevation: json["Elevation Gain"]
             });
         });
     }
