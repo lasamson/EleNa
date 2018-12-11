@@ -75,7 +75,7 @@ const styles = theme => ({
     // marginLeft: '40%',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     fontWeight: 'bold',
-    marginTop: '7%'
+    marginTop: '3%'
     // background: '#3267D6'
   },
   goText: {
@@ -91,7 +91,7 @@ const styles = theme => ({
     marginRight: mytheme.spacing.unit,
     width: '70%',
     textAlign: 'center',
-    marginTop: -2
+    marginTop: 10
   },
   textFieldDestination: {
     position: 'relative',
@@ -257,8 +257,8 @@ class MainInterface extends React.Component {
         const source = "81 Belchertown Road, Amherst, MA";
         // const destination = document.getElementById('destination').value;
         const destination = "31 N Pleasant Street, Amherst, MA";
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-119")[0].getAttribute("aria-valuenow")) + 100;
-        const max_min = document.getElementsByClassName("MuiToggleButton-selected-111")[0].firstElementChild.textContent.toLowerCase();
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-120")[0].getAttribute("aria-valuenow")) + 100;
+        const max_min = document.getElementsByClassName("MuiToggleButton-selected-112")[0].firstElementChild.textContent.toLowerCase();
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',
