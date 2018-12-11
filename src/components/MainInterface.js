@@ -75,7 +75,7 @@ const styles = theme => ({
     // marginLeft: '40%',
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     fontWeight: 'bold',
-    marginTop: '20px'
+    marginTop: '7%'
     // background: '#3267D6'
   },
   goText: {
@@ -85,7 +85,15 @@ const styles = theme => ({
     // borderBottom: '2px solid white',
     color: '#ffffff'
   },
-  textField: {
+  textFieldSource: {
+    position: 'relative',
+    marginLeft: mytheme.spacing.unit,
+    marginRight: mytheme.spacing.unit,
+    width: '70%',
+    textAlign: 'center',
+    marginTop: -2
+  },
+  textFieldDestination: {
     position: 'relative',
     marginLeft: mytheme.spacing.unit,
     marginRight: mytheme.spacing.unit,
@@ -155,7 +163,8 @@ class MainInterface extends React.Component {
             paper: classNames(classes.drawerPaper),
           }}
         >
-          <h1 className="elenaLogo">EleNa</h1>
+          {/* <h1 className="elenaLogo">EleNa</h1> */}
+          <img src={require('../assets/EleNa-logo.png')} className="elenaLogo"/>
 
           {/* <Input
             placeholder="Source"
@@ -185,7 +194,7 @@ class MainInterface extends React.Component {
           <TextField
           id="source"
           label="Source"
-          className={classes.textField}
+          className={classes.textFieldSource}
           margin="normal"
           variant="outlined"
           InputLabelProps={{
@@ -205,7 +214,7 @@ class MainInterface extends React.Component {
         <TextField
           id="destination"
           label="Destination"
-          className={classes.textField}
+          className={classes.textFieldDestination}
           margin="normal"
           variant="outlined"
           InputLabelProps={{

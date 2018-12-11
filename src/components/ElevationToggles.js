@@ -8,7 +8,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const styles = theme => ({
   toggleContainer: {
-    height: 56,
+    // height: 56,
     padding: 0,
     display: 'flex',
     alignItems: 'center',
@@ -16,7 +16,9 @@ const styles = theme => ({
     margin: 0,
     position: 'relative',
     width: '30%',
-    marginLeft: '37%'
+    marginLeft: '37%',
+    marginTop: '3.6%',
+    marginBottom: '1%'
   },
 });
 

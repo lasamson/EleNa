@@ -14,7 +14,8 @@ const styles = {
     padding: '22px 0px',
     position: 'relative',
     width: '70%',
-    marginLeft: '15%'
+    marginLeft: '15%',
+    // marginBottom: '0.5%',
   },
   sliderValue: {
     color: '#ffffff',
