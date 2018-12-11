@@ -10,6 +10,7 @@ app = Flask(__name__)
 CORS(app)
 geolocator = Nominatim(user_agent="elena")
 
+
 def get_city_country(address):
     """ Get city and state from address"""
     address_split = address.split(",")
