@@ -11,6 +11,7 @@ import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 import MapView from './MapView';
 import RouteStastic from './RouteStatistic';
+import RouteDirections from './RouteDirections';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import TextField from '@material-ui/core/TextField';
@@ -132,10 +133,12 @@ class MainInterface extends React.Component {
     const { classes } = this.props;
     let map;
     let routeStats;
+    let routeDirections;
 
     if(this.state.renderRoute) {
       map = <MapView route={this.state.route}></MapView>
       routeStats = <RouteStastic></RouteStastic>
+      routeDirections = <RouteDirections></RouteDirections>
     } else {
       map = <MapView></MapView>
     }
@@ -224,6 +227,8 @@ class MainInterface extends React.Component {
           </Button>
 
           {routeStats}
+
+          {routeDirections}
 
         </Drawer>
 
