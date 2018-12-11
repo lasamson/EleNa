@@ -31,7 +31,7 @@ def get_route():
 
     source = content["Source"]
     destination = content["Destination"]
-    max_min = content["Max_min"]
+    max_min = (content["Max_min"] == "max")
     percentage = float(content["Percentage"])
 
     # convert the source,destination addresses to lat,lng coordinates
@@ -43,10 +43,13 @@ def get_route():
     print(city, state)
 
     # find the best path between source & destination based on elevation
-    route, distance, elevation = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
+    route, dist, elevation = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage, max_min)
+    print(route)
+    print(dist)
+    print(elevation)
 
     # send a response back (w/ the route)
-    response = jsonify({'Route': route})
+    response = jsonify({'Route': route, "Distance": dist, "Elevation Gain": elevation})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 

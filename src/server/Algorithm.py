@@ -165,7 +165,6 @@ def get_dis_from_percentage(min_distance, percent):
     return (percent) * min_distance
 
 
-
 def get_from_djikstra(G, start, end, percent, max_ele=True):
     min_distance = get_path_length(G, get_shortest_path(G, start, end))
     max_path_length = get_dis_from_percentage(min_distance, percent)
@@ -200,7 +199,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
                 revPath[next] = cur
     path = generate_path(revPath, start, end)
 
-    return get_lat_long(G,path),get_path_length(G,path), get_path_elevation(G,path)
+    return get_lat_long(G, path), get_path_length(G, path), get_path_elevation(G, path)
 
 
 def astar_path(G, source, target, percentage, max_ele=False):
