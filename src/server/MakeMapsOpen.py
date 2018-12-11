@@ -103,4 +103,4 @@ def clean(city, state):
 
 
 get_map('Amherst', 'MA')
-clean('Amherst', 'MA')
+# clean('Amherst', 'MA')
