@@ -16,7 +16,7 @@ const styles = theme => ({
     margin: 0,
     position: 'relative',
     width: '30%',
-    marginLeft: '37%',
+    marginLeft: '40%',
     marginTop: '3.6%',
     marginBottom: '1%'
   },
