@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup, Polyline, } from '../map_components';
-import RoutingMachine from './RoutingMachine';
 import L from 'leaflet';
+import Routing from 'leaflet-routing-machine';
 
 export default class MapView extends React.Component {
   constructor(props) {
