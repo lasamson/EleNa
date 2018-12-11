@@ -13,7 +13,6 @@ from osmnx.core import save_to_cache
 from osmnx.core import get_from_cache
 from osmnx.utils import log
 
-
 ox.config(log_file=True, log_console=True, use_cache=True)
 
 
@@ -40,7 +39,6 @@ def get_map(city, state):
 
 
 def check_point_within_city(start, end):
-
     os.graph_from_place
 
 
@@ -50,7 +48,8 @@ def add_node_elevations_open(G, max_locations_per_batch=180,
     url_template = 'https://api.open-elevation.com/api/v1/lookup?locations={}'
 
     node_points = pd.Series({node: '{:.5f},{:.5f}'.format(data['y'], data['x']) for node, data in G.nodes(data=True)})
-    log('Requesting node elevations from the API in {} calls.'.format(math.ceil(len(node_points) / max_locations_per_batch)))
+    log('Requesting node elevations from the API in {} calls.'.format(
+        math.ceil(len(node_points) / max_locations_per_batch)))
 
     results = []
     for i in range(0, len(node_points), max_locations_per_batch):
@@ -79,9 +78,11 @@ def add_node_elevations_open(G, max_locations_per_batch=180,
 
     # sanity check that all our vectors have the same number of elements
     if not (len(results) == len(G.nodes()) == len(node_points)):
-        raise Exception('Graph has {} nodes but we received {} results from the elevation API.'.format(len(G.nodes()), len(results)))
+        raise Exception('Graph has {} nodes but we received {} results from the elevation API.'.format(len(G.nodes()),
+                                                                                                       len(results)))
     else:
-        log('Graph has {} nodes and we received {} results from the elevation API.'.format(len(G.nodes()), len(results)))
+        log('Graph has {} nodes and we received {} results from the elevation API.'.format(len(G.nodes()),
+                                                                                           len(results)))
 
     # add elevation as an attribute to the nodes
     df = pd.DataFrame(node_points, columns=['node_points'])

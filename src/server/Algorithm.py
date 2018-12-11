@@ -172,7 +172,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     floored_percent = (percent / 10) * 10
     iters = []
     i = 100
-    while(i <= floored_percent):
+    while (i <= floored_percent):
         iters.append(i)
         i += 10
         # print(i)
