@@ -56,10 +56,10 @@ function RouteStatistic(props) {
                     Route Statistics
                 </Typography>
                 <Typography className={classes.titleDistance} color="textSecondary" gutterBottom>
-                   Total Distance <br /> {props["distance"].toFixed(2)} meters
+                   <strong>Total Distance</strong> <br /> {props["distance"].toFixed(2)} meters
                 </Typography>
                 <Typography className={classes.titleElevation} color="textSecondary" gutterBottom>
-                   Elevation Gain <br /> {props["elevation"]} meters
+                   <strong>Elevation Gain</strong> <br /> {props["elevation"]} meters
                 </Typography>
                 </CardContent>
             </Card>
