@@ -256,7 +256,7 @@ class MainInterface extends React.Component {
         // const source = document.getElementById('source').value;
         const source = "81 Belchertown Road, Amherst, MA";
         // const destination = document.getElementById('destination').value;
-        const destination = "31 N Pleasant Street, Amherst, MA";
+        const destination = "30 Eastman Ln, Amherst, MA";
         const percentage = Number(document.getElementsByClassName("MuiSlider-root-120")[0].getAttribute("aria-valuenow")) + 100;
         const max_min = document.getElementsByClassName("MuiToggleButton-selected-112")[0].firstElementChild.textContent.toLowerCase();
 

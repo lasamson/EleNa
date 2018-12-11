@@ -27,6 +27,7 @@ import numpy as np
 
 
 def get_elevation_gain(G, start, end):
+    print(G.nodes[start]['elevation'] - G.nodes[end]['elevation'])
     return G.nodes[start]['elevation'] - G.nodes[end]['elevation']
 
 
@@ -226,7 +227,7 @@ def astar_path(G, source, target, percentage, max_ele=False):
                 path.append(node)
                 node = explored[node]
             path.reverse()
-            return path
+            return path, get_path_length(G, path), get_path_elevation(G, path)
 
         if curnode in explored:
             continue
