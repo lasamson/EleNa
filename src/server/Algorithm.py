@@ -150,8 +150,6 @@ def get_dis_from_percentage(min_distance,percent):
         return (100.0 + percent)/100.0 * min_distance
     return (1.0 + percent) * min_distance
 
-def get_dis_from_percentage(max_distance):
-        return max_distance
 
 
 def get_from_djikstra(G, start, end, percent, max_ele=True):
@@ -181,7 +179,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
             ele_cost = get_elevation_gain(G, cur, nextnode)
             if ele_cost > 0:
                 cur_elev += ele_cost
-            if nextnode not in cost or cost < visited_cost[nextnode]:
+            if nextnode not in visited_cost or cost < visited_cost[nextnode]:
                 visited_cost[nextnode] = cur_elev
                 ele[nextnode] = cost
                 priority = cur_elev
