@@ -20,11 +20,12 @@ const styles = {
     color: '#ffffff',
     position: 'relative',
     width: '40%',
-    marginLeft: '33%',
+    marginLeft: '30%',
     // margin: '0 auto',
     textAlign: 'center',
     marginTop: '10px',
-    fontWeight: 'bold'
+    fontWeight: 700,
+    fontSize: 18
   }
 };
 
