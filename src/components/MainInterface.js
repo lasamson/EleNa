@@ -145,7 +145,7 @@ class MainInterface extends React.Component {
           }}
         >
           <h1 className="elenaLogo">EleNa</h1>
-          
+
           {/* <Input
             placeholder="Source"
             id="source"
@@ -229,6 +229,7 @@ class MainInterface extends React.Component {
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
         const percentage = Number(document.getElementsByClassName("MuiSlider-root-121")[0].getAttribute("aria-valuenow")) + 100;
+        const max_min = document.getElementsByClassName("MuiToggleButton-selected-111")[0].firstElementChild.textContent.toLowerCase();
 
         fetch("http://localhost:8080/get_route", {
           method: 'POST',
@@ -239,7 +240,7 @@ class MainInterface extends React.Component {
           body: JSON.stringify({
             Source: source,
             Destination: destination,
-            Max_min: 'test3',
+            Max_min: max_min,
             Percentage: percentage
           })
         })

@@ -37,10 +37,10 @@ class ElevationToggles extends React.Component {
     return (
           <div className={classes.toggleContainer}>
             <ToggleButtonGroup value={formats} exclusive onChange={this.handleFormat}>
-              <ToggleButton value="bold">
+              <ToggleButton value="bold" data="min-elevation">
                 Min
               </ToggleButton>
-              <ToggleButton value="italic">
+              <ToggleButton value="italic" data="max-elevation">
                 Max
               </ToggleButton>
             </ToggleButtonGroup>
