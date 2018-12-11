@@ -33,6 +33,14 @@ class AlgorithmTest(unittest.TestCase):
                          'wrong path length', )
         self.assertEqual(get_path_length(self.map,[66719742, 66678348, 66613427]), 696.1949999999999, 'wrong path length', )
 
+    def test_djikstra(self):
+        al, _, _ =  get_from_djikstra(self.map, 66700688, 66691585, 200, max_ele=True)
+        self.assertEqual(len(al),22)
+
+        al, _, _ =  get_from_djikstra(self.map, 66700688, 66691585, 200, max_ele=False)
+        self.assertEqual(len(al),19)
+
+
     def tearDown(self):
         os.remove('AmherstMA.pkl')
         os.remove('AmherstMA_projected.pkl')
