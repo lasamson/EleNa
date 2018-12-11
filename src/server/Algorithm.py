@@ -211,7 +211,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
         print(get_path_elevation(G, path))
         candidate_paths[get_path_elevation(G, path)] = path
 
-    min_path_len = 10 * 6
+    min_path_len = 10 ** 6
     max_path_len = 0
 
     for el in candidate_paths.keys():
