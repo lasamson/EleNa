@@ -11,5 +11,5 @@ def find_route(city, state, start, end, percentage, max_min):
 
         return Algorithm.get_from_djikstra(G, startN, endN, percentage, max_min)
     else:
-        print "not in map"
+        print ("not in map")
 
