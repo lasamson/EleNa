@@ -81,7 +81,15 @@ const styles = theme => ({
     // borderBottom: '2px solid white',
     color: '#ffffff'
   },
-  textField: {
+  textFieldSource: {
+    position: 'relative',
+    marginLeft: mytheme.spacing.unit,
+    marginRight: mytheme.spacing.unit,
+    width: '70%',
+    textAlign: 'center',
+    marginTop: -2
+  },
+  textFieldDestination: {
     position: 'relative',
     marginLeft: mytheme.spacing.unit,
     marginRight: mytheme.spacing.unit,
@@ -149,7 +157,8 @@ class MainInterface extends React.Component {
             paper: classNames(classes.drawerPaper),
           }}
         >
-          <h1 className="elenaLogo">EleNa</h1>
+          {/* <h1 className="elenaLogo">EleNa</h1> */}
+          <img src={require('../assets/EleNa-logo.png')} className="elenaLogo"/>
 
           {/* <Input
             placeholder="Source"
@@ -179,7 +188,7 @@ class MainInterface extends React.Component {
           <TextField
           id="source"
           label="Source"
-          className={classes.textField}
+          className={classes.textFieldSource}
           margin="normal"
           variant="outlined"
           InputLabelProps={{
@@ -199,7 +208,7 @@ class MainInterface extends React.Component {
         <TextField
           id="destination"
           label="Destination"
-          className={classes.textField}
+          className={classes.textFieldDestination}
           margin="normal"
           variant="outlined"
           InputLabelProps={{
