@@ -35,8 +35,8 @@ def get_route():
     percentage = float(content["Percentage"])
 
     # convert the source,destination addresses to lat,lng coordinates
-    # source_lat, source_lng = convert_addresss_to_lat_lng(source)
-    # dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
+    source_lat, source_lng = convert_addresss_to_lat_lng(source)
+    dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
 
     # get the city, country of the source
     city, state = get_city_country(source)
@@ -45,6 +45,8 @@ def get_route():
     # find the best path between source & destination based on elevation
     route, dist, elevation = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
     print(route)
+    print(dist)
+    print(elevation)
 
     # send a response back (w/ the route)
     response = jsonify({'Route': route, "Distance": dist, "Elevation Gain": elevation})
