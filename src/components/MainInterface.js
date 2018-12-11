@@ -10,6 +10,7 @@ import PercentageSlider from './PercentageSlider';
 import ElevationToggles from './ElevationToggles';
 import '../styles/MainInterface.css';
 import MapView from './MapView';
+import RouteStastic from './RouteStatistic';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import TextField from '@material-ui/core/TextField';
@@ -129,8 +130,11 @@ class MainInterface extends React.Component {
   render() {
     const { classes } = this.props;
     let map;
+    let routeStats;
+
     if(this.state.renderRoute) {
       map = <MapView route={this.state.route}></MapView>
+      routeStats = <RouteStastic></RouteStastic>
     } else {
       map = <MapView></MapView>
     }
@@ -217,7 +221,11 @@ class MainInterface extends React.Component {
           <Button variant="contained" className={classes.button} onClick={() => { this.sendRequest() }}>
           <span className={classes.goText}>Go!</span>
           </Button>
+
+          {routeStats}
+
         </Drawer>
+
         <main className={classes.content}>
             {map}
         </main>
@@ -226,6 +234,7 @@ class MainInterface extends React.Component {
 
     sendRequest() {
 
+        // get data from forrm fields
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
         const percentage = Number(document.getElementsByClassName("MuiSlider-root-121")[0].getAttribute("aria-valuenow")) + 100;
