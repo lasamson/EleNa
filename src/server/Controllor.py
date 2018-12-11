@@ -18,6 +18,7 @@ def find_route(city, state, start, end, percentage):
         print Algorithm.get_path_length(G,p)
         print Algorithm.get_path_elevation(G,p)
 
+        p = Algorithm.astar_path(G, startN, endN, percentage, max_ele=False)
         return Algorithm.get_lat_long(G, p)
     else:
         print "not in map"

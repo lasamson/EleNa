@@ -14,16 +14,19 @@ const styles = {
     padding: '22px 0px',
     position: 'relative',
     width: '70%',
-    marginLeft: '15%'
+    marginLeft: '15%',
+    // marginBottom: '0.5%',
   },
   sliderValue: {
     color: '#ffffff',
     position: 'relative',
     width: '40%',
     marginLeft: '30%',
+    // margin: '0 auto',
     textAlign: 'center',
     marginTop: '10px',
-    fontWeight: 'bold'
+    fontWeight: 700,
+    fontSize: 18
   }
 };
 

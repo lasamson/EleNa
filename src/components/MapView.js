@@ -7,10 +7,11 @@ import { Map, TileLayer, Marker, Popup, Polyline, } from '../map_components'
 export default class MapView extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       initial_lat: 42.373222,
       initial_lng: -72.519852,
+      end_lat: 42.373222,
+      end_lng: -72.51982,
       renderRoute: false,
       mapCenter: [42.36, -71.36],
       zoom: 14
@@ -19,7 +20,6 @@ export default class MapView extends React.Component {
 
   componentWillReceiveProps(props) {
     let route = props["route"];
-    console.log(route);
 
     this.setState({
       renderRoute: true,
@@ -40,7 +40,7 @@ export default class MapView extends React.Component {
   }
 
   render() {
-    let initial_position = [this.state.initial_lat, this.state.initial_lng]
+    let initial_position = [(this.state.initial_lat+this.state.end_lat)/2, (this.state.initial_lng + this.state.end_lng)/2]
     let route;
     let initial_marker;
     let end_marker;

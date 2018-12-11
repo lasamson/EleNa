@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
     card: {
     //   minWidth: 300,
-      // height: 150,
+    //   height: 250,
       width: 500,
       margin: '0 auto',
       marginTop: 20,
@@ -21,10 +21,11 @@ const styles = {
       transform: 'scale(0.8)',
     },
     detailTitle: {
-      fontWeight: 700
+        fontWeight: 700
     },
     title: {
       fontSize: 14,
+      textAlign: "left"
     },
     pos: {
       marginBottom: 12,
@@ -32,9 +33,7 @@ const styles = {
   };
 
 
-function RouteStatistic(props) {
-
-    console.log(props);
+function RouteDirections(props) {
 
     const { classes } = props;
     const bull = <span className={classes.bullet}>•</span>;
@@ -44,13 +43,22 @@ function RouteStatistic(props) {
             <Card className={classes.card}>
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2" className="detailTitle">
-                    Route Statistics
+                Route Directions
                 </Typography>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                   Total Distance: {12032}
+                1. Head northwest on MA-9 W toward Colonial Village
                 </Typography>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Total Elevation: {123021}
+                2. Slight left onto MA-9 W/College St
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                3. Turn right onto Amherst Crossing
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                4. Turn left onto Main St
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                5. Turn right onto Boltwood Walk
                 </Typography>
                 </CardContent>
             </Card>
@@ -58,8 +66,8 @@ function RouteStatistic(props) {
     );
   }
 
-  RouteStatistic.propTypes = {
+  RouteDirections.propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-  export default withStyles(styles)(RouteStatistic);
+  export default withStyles(styles)(RouteDirections);
