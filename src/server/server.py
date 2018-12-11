@@ -42,10 +42,11 @@ def get_route():
     print(city, state)
 
     # find the best path between source & destination based on elevation
-    route = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
+    route, dist, elevation = find_route(city, state, [source_lat, source_lng], [dest_lat, dest_lng], percentage)
+    print(route)
 
     # send a response back (w/ the route)
-    response = jsonify({'Route': route})
+    response = jsonify({'Route': route, "Distance": dist, "Elevation Gain": elevation})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
