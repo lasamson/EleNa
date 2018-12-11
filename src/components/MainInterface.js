@@ -238,7 +238,7 @@ class MainInterface extends React.Component {
         // get data from forrm fields
         const source = document.getElementById('source').value;
         const destination = document.getElementById('destination').value;
-        const percentage = Number(document.getElementsByClassName("MuiSlider-root-121")[0].getAttribute("aria-valuenow")) + 100;
+        const percentage = Number(document.getElementsByClassName("MuiSlider-root-119")[0].getAttribute("aria-valuenow")) + 100;
         const max_min = document.getElementsByClassName("MuiToggleButton-selected-111")[0].firstElementChild.textContent.toLowerCase();
 
         fetch("http://localhost:8080/get_route", {
