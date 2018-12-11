@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
     card: {
     //   minWidth: 300,
-      // height: 150,
+      height: 150,
       width: 500,
       margin: '0 auto',
       marginTop: 20,
@@ -23,8 +23,17 @@ const styles = {
     detailTitle: {
       fontWeight: 700
     },
-    title: {
-      fontSize: 14,
+    titleDistance: {
+      fontSize: 16,
+      float: "left",
+      marginLeft: 20,
+      marginTop: 10
+    },
+    titleElevation: {
+      fontSize: 16,
+      float: "right",
+      marginRight: 20,
+      marginTop: 10
     },
     pos: {
       marginBottom: 12,
@@ -34,7 +43,7 @@ const styles = {
 
 function RouteStatistic(props) {
 
-    console.log(props);
+    console.log("Props: ", props);
 
     const { classes } = props;
     const bull = <span className={classes.bullet}>•</span>;
@@ -46,11 +55,11 @@ function RouteStatistic(props) {
                 <Typography gutterBottom variant="h5" component="h2" className="detailTitle">
                     Route Statistics
                 </Typography>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                   Total Distance: {12032}
+                <Typography className={classes.titleDistance} color="textSecondary" gutterBottom>
+                   Total Distance <br /> {props["distance"].toFixed(2)} meters
                 </Typography>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Total Elevation: {123021}
+                <Typography className={classes.titleElevation} color="textSecondary" gutterBottom>
+                   Elevation Gain <br /> {props["elevation"]} meters
                 </Typography>
                 </CardContent>
             </Card>
