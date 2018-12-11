@@ -143,15 +143,17 @@ def get_from_all_paths(G, start, end, percent, max_ele=True):
     else:
         key = min(elevation_gain.iterkeys(), key=(lambda key: elevation_gain[key]))
 
-    return elevation_gain[key]
+    return elevation_gain[key], get_path_elevation(G, elevation_gain[key]), get_path_length(G, elevation_gain[key])
 
-def get_dis_from_percentage(min_distance,percent):
-    if percent>1:
-        return (100.0 + percent)/100.0 * min_distance
+
+def get_dis_from_percentage(min_distance, percent):
+    if percent > 1:
+        return (100.0 + percent) / 100.0 * min_distance
     return (1.0 + percent) * min_distance
 
+
 def get_dis_from_percentage(max_distance):
-        return max_distance
+    return max_distance
 
 
 def get_from_djikstra(G, start, end, percent, max_ele=True):
@@ -165,7 +167,7 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     heappush(queue, (0, start))
     revPath = {}
     visited_cost = {}
-    ele ={}
+    ele = {}
     revPath[start] = None
     visited_cost[start] = 0
     ele[start] = 0
@@ -173,10 +175,10 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     while len(queue) > 0:
         (val, current) = heappop(queue)
         if current == end:
-            if visited_cost< max_path_length:
+            if visited_cost < max_path_length:
                 break
         for cur, nextnode, data in G.edges(current, data=True):
-            cost = visited_cost[cur]+get_length(G,cur,nextnode)
+            cost = visited_cost[cur] + get_length(G, cur, nextnode)
             cur_elev = ele[cur]
             ele_cost = get_elevation_gain(G, cur, nextnode)
             if ele_cost > 0:
@@ -193,3 +195,57 @@ def get_from_djikstra(G, start, end, percent, max_ele=True):
     return generate_path(revPath, start, end)
 
 
+def astar_path(G, source, target, percentage, max_ele=False):
+    heuristic = None
+    if source not in G or target not in G:
+        msg = 'Either source {} or target {} is not in G'
+        raise nx.NodeNotFound(msg.format(source, target))
+
+    if heuristic is None:
+        # The default heuristic is h=0 - same as Dijkstra's algorithm
+        def heuristic(u, v):
+            return 0
+
+    push = heappush
+    pop = heappop
+
+    c = 1
+    queue = [(0, c, source, 0, None)]
+
+    enqueued = {}
+    explored = {}
+
+    while queue:
+        # Pop the smallest item from queue.
+        _, _, curnode, dist, parent = pop(queue)
+
+        if curnode == target:
+            path = [curnode]
+            node = parent
+            while node is not None:
+                path.append(node)
+                node = explored[node]
+            path.reverse()
+            return path
+
+        if curnode in explored:
+            continue
+
+        explored[curnode] = parent
+
+        for neighbor, w in G[curnode].items():
+            if neighbor in explored:
+                continue
+            # print(neighbor, w[0])
+            ncost = dist + w[0]['length']
+            if neighbor in enqueued:
+                qcost, h = enqueued[neighbor]
+                if qcost <= ncost:
+                    continue
+            else:
+                h = heuristic(neighbor, target)
+            enqueued[neighbor] = ncost, h
+            c += 1
+            push(queue, (ncost + h, c, neighbor, ncost, curnode))
+
+    raise nx.NetworkXNoPath("Node %s not reachable from %s" % (source, target))
