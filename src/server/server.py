@@ -10,7 +10,6 @@ app = Flask(__name__)
 CORS(app)
 geolocator = Nominatim(user_agent="elena")
 
-
 def get_city_country(address):
     """ Get city and state from address"""
     address_split = address.split(",")
@@ -37,9 +36,6 @@ def get_route():
     # convert the source,destination addresses to lat,lng coordinates
     source_lat, source_lng = convert_addresss_to_lat_lng(source)
     dest_lat, dest_lng = convert_addresss_to_lat_lng(destination)
-
-    print(source_lat, source_lng)
-    print(dest_lat, dest_lng)
 
     # get the city, country of the source
     city, state = get_city_country(source)

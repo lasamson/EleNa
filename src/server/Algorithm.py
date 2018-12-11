@@ -122,6 +122,7 @@ def get_euclidean_distance(G, start, end):
 def get_from_all_paths(G, start, end, percent, max_ele=True):
     min_distance = get_path_length(G, get_shortest_path(G, start, end))
     shortest_paths = list(nx.all_shortest_paths(G, start, end))
+
     print(percent)
     max_path_length = (1.0 + float(percent)) * min_distance
 
@@ -143,3 +144,52 @@ def get_from_all_paths(G, start, end, percent, max_ele=True):
         key = min(elevation_gain.iterkeys(), key=(lambda key: elevation_gain[key]))
 
     return elevation_gain[key]
+
+def get_dis_from_percentage(min_distance,percent):
+    if percent>1:
+        return (100.0 + percent)/100.0 * min_distance
+    return (1.0 + percent) * min_distance
+
+def get_dis_from_percentage(max_distance):
+        return max_distance
+
+
+def get_from_djikstra(G, start, end, percent, max_ele=True):
+    min_distance = get_path_length(G, get_shortest_path(G, start, end))
+    shortest_paths = list(nx.all_shortest_paths(G, start, end))
+    max_path_length = get_dis_from_percentage(min_distance, percent)
+
+    elevation_gain = {}
+
+    queue = []
+    heappush(queue, (0, start))
+    revPath = {}
+    visited_cost = {}
+    ele ={}
+    revPath[start] = None
+    visited_cost[start] = 0
+    ele[start] = 0
+
+    while len(queue) > 0:
+        (val, current) = heappop(queue)
+        if current == end:
+            if visited_cost< max_path_length:
+                break
+        for cur, nextnode, data in G.edges(current, data=True):
+            cost = visited_cost[cur]+get_length(G,cur,nextnode)
+            cur_elev = ele[cur]
+            ele_cost = get_elevation_gain(G, cur, nextnode)
+            if ele_cost > 0:
+                cur_elev += ele_cost
+            if nextnode not in cost or cost < visited_cost[nextnode]:
+                visited_cost[nextnode] = cur_elev
+                ele[nextnode] = cost
+                priority = cur_elev
+                if max_ele == False:
+                    priority = priority
+                heappush(queue, (priority, nextnode))
+                revPath[nextnode] = current
+
+    return generate_path(revPath, start, end)
+
+
