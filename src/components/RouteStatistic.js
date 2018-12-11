@@ -10,10 +10,12 @@ const styles = {
     card: {
     //   minWidth: 300,
       height: 150,
-      width: 500,
+      width: 400,
       margin: '0 auto',
       marginTop: 20,
-      borderRadius: 10
+      borderRadius: 10,
+      background: "#3f51b5",
+      color: "white"
     },
     bullet: {
       display: 'inline-block',
@@ -21,19 +23,23 @@ const styles = {
       transform: 'scale(0.8)',
     },
     detailTitle: {
-      fontWeight: 700
+      fontWeight: 700,
+      color: "white",
+      fontSize: 25
     },
     titleDistance: {
       fontSize: 16,
       float: "left",
       marginLeft: 20,
-      marginTop: 10
+      marginTop: 10,
+      color: "white"
     },
     titleElevation: {
       fontSize: 16,
       float: "right",
       marginRight: 20,
-      marginTop: 10
+      marginTop: 10,
+      color: "white"
     },
     pos: {
       marginBottom: 12,
@@ -50,8 +56,8 @@ function RouteStatistic(props) {
         <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout="1000">
             <Card className={classes.card}>
                 <CardContent>
-                <Typography gutterBottom variant="h5" component="h2" className="detailTitle">
-                    Route Statistics
+                <Typography className={classes.detailTitle} gutterBottom>
+                    <strong>Route Statistics</strong>
                 </Typography>
                 <Typography className={classes.titleDistance} color="textSecondary" gutterBottom>
                    <strong>Total Distance</strong> <br /> {props["distance"].toFixed(2)} meters

@@ -15,6 +15,7 @@ import RouteDirections from './RouteDirections';
 import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import TextField from '@material-ui/core/TextField';
+import Footer from './Footer';
 
 const mytheme = createMuiTheme({
   palette: {
@@ -56,7 +57,7 @@ const styles = theme => ({
     boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     backgroundColor: mytheme.palette.primary.main,
     overflowX: 'hidden',
-    boxShadow: "5px 0px 5px 0px rgba(0,0,0,0.30)"
+    boxShadow: "10px 0px 5px 0px rgba(0,0,0,0.30)"
   },
   content: {
     flexGrow: 1,
@@ -153,6 +154,7 @@ class MainInterface extends React.Component {
     let map;
     let routeStats;
     let routeDirections;
+    let footer;
 
     console.log(this.state);
 
@@ -160,6 +162,7 @@ class MainInterface extends React.Component {
       map = <MapView route={this.state.route}></MapView>
       routeStats = <RouteStastic distance={this.state.distance} elevation={this.state.elevation}></RouteStastic>
       routeDirections = <RouteDirections></RouteDirections>
+      footer = <Footer></Footer>
     } else {
       map = <MapView></MapView>
     }
@@ -249,7 +252,7 @@ class MainInterface extends React.Component {
           </Button>
 
           {routeStats}
-          {/* {routeDirections} */}
+          {/* {footer} */}
 
         </Drawer>
 
