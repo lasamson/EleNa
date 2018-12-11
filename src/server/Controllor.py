@@ -2,7 +2,7 @@ import Algorithm
 import MakeMapsOpen
 
 
-def find_route(city, state, start, end, percentage):
+def find_route(city, state, start, end, percentage, max_min):
 
     G, G_projected = MakeMapsOpen.get_map(city, state)
 
@@ -15,7 +15,7 @@ def find_route(city, state, start, end, percentage):
         # print('path = ', path)
         # print(Algorithm.get_lat_long(G, path))
         # return Algorithm.get_lat_long(G, path), dist, elev
-        return Algorithm.get_from_djikstra(G, startN, endN, percentage, False)
+        return Algorithm.get_from_djikstra(G, startN, endN, percentage, max_min)
     else:
         print "not in map"
 
