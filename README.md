@@ -3,7 +3,8 @@
 ## What is EleNA?
 EleNa (Elevation-based Navigation) is a web application that finds the an optimal route between two points by taking not only distance, but also elevation gain into consideration. EleNa would be used by runners, bikers, and hikers alike in order to find routes that range from an easy stroll to an intense workout. In our implementation, we focused on developing a complete system, including a user-friendly UI and an effective algorithm. This is our final project for CS 520: Software Engineering.
 
-<img src="elena_1.png" alt="FrontEnd UI" width="1000"/>
+<img src="elena_1.png" alt="UI 1" width="1000"/>
+<img src="elena_2.png" alt="UI 2" width="1000"/>
 
 ## How to Run
 
