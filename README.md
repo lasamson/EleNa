@@ -1,21 +1,21 @@
 # EleNA: Elevation Based Navigation
 
-### What is EleNA?
-EleNa is an Elevation-based Navigation web application, we focused on with afocus on developing a complete system with an effective algorithm with a focuson the user-friendly interface. EleNa is used for finding an optimal biking/hikingroute  between  two  points,  where  the  user  would  want  to  either  maximize  orminimize the elevation gain, within some amount of distance that is a percentageof the shortest path.
+## What is EleNA?
+EleNa (Elevation-based Navigation) is a web application that finds the an optimal route between two points by taking not only distance, but also elevation gain into consideration. EleNa would be used by runners, bikers, and hikers alike in order to find routes that range from an easy stroll to an intense workout. In our implementation, we focused on developing a complete system, including a user-friendly UI and an effective algorithm. This is our final project for CS 520: Software Engineering.
 
-<img src="frontend.png" alt="FrontEnd UI" width="1000"/>
+<img src="elena_1.png" alt="FrontEnd UI" width="1000"/>
 
-## How to run
+## How to Run
 
-First install the both the frontend dependencies and server dependencies using the following two commands:
+First, install both the front-end dependencies and the server dependencies using the following two commands:
 
 ### `npm install`
 ### `pip install -r requirements.txt`
 
-In the project directory, you can run the *react server* using the following command:
+In the project's root directory, run the React client using the following command:
 
 ### `npm start`
 
-Also in the the *src/server* folder, you can run the *python server* using the following command:
+In the the *src/server/* folder, run the Flask server using the following command:
 
 ### `python server.py`
