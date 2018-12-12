@@ -12,10 +12,10 @@ First install the both the frontend dependencies and server dependencies using t
 ### `npm install`
 ### `pip install -r requirements.txt`
 
-In the project directory, you can run run the react server using the following command:
+In the project directory, you can run the *react server* using the following command:
 
 ### `npm start`
 
-Also in the the src/server folder, you can run the python server using the following command:
+Also in the the *src/server* folder, you can run the *python server* using the following command:
 
 ### `python server.py`
