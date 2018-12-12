@@ -5,15 +5,17 @@ EleNa is an Elevation-based Navigation web application, we focused on with afocu
 
 <img src="frontend.png" alt="FrontEnd UI" width="500"/>
 
-## Available Scripts
+## How to run
 
-In the project directory, you can run:
+First install the both the frontend dependencies and server dependencies using the following two commands:
+
+### `npm install`
+### `pip install -r requirements.txt`
+
+In the project directory, you can run run the react server using the following command:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Also in the the src/server folder, you can run the python server using the following command:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
+### `python server.py`
