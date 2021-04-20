@@ -232,7 +232,7 @@ psutil==5.4.1
 psycopg2==2.6.2
 ptyprocess==0.5.2
 PuLP==1.6.8
-py==1.4.34
+py==1.10.0
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 PyAudio==0.2.7
