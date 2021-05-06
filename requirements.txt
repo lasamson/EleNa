@@ -83,7 +83,7 @@ Fiona==1.8.0
 firebase-admin==2.5.0
 flake8==3.4.1
 Flask==0.10.1
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
 floyd-cli==0.10.27
