@@ -199,7 +199,7 @@ oauth2client==3.0.0
 oauthlib==2.0.6
 odo==0.5.1
 olefile==0.44
-opencv-python==3.4.0.12
+opencv-python==3.4.7.28
 openpyxl==2.4.8
 openreview-py==0.6.0
 osmnx==0.8.2
