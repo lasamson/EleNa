@@ -61,7 +61,7 @@ cycler==0.10.0
 cymem==1.31.2
 Cython==0.26.1
 cytoolz==0.8.2
-dask==0.15.2
+dask==2021.10.0
 datashape==0.5.4
 decorator==4.3.0
 descartes==1.1.0
