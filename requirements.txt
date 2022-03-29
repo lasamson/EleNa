@@ -207,7 +207,7 @@ packaging==16.8
 pandas==0.23.4
 pandas-gbq==0.2.1
 pandocfilters==1.4.2
-paramiko==2.4.0
+paramiko==2.10.1
 partd==0.3.8
 path.py==10.3.1
 pathlib==1.0.1
