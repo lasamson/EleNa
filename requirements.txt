@@ -333,7 +333,7 @@ tweet-preprocessor==0.5.0
 tweetokenize==1.0.1
 twilio==6.9.1
 typing==3.6.2
-ujson==1.35
+ujson==5.2.0
 unicodecsv==0.14.1
 unittest2==1.1.0
 uritemplate==3.0.0
