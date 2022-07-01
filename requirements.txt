@@ -175,7 +175,7 @@ marshmallow==2.15.0
 matplotlib==2.2.3
 mccabe==0.6.1
 mediameter-cliff==1.4.0
-mistune==0.7.4
+mistune==0.8.1
 mock==2.0.0
 mpmath==0.19
 msgpack-numpy==0.4.1
