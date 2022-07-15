@@ -66,7 +66,7 @@ datashape==0.5.4
 decorator==4.3.0
 descartes==1.1.0
 dill==0.2.7.1
-distributed==1.18.3
+distributed==2021.10.0
 docutils==0.14
 EmoInt==0.1.0
 en-core-web-sm==2.0.0
