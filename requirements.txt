@@ -184,7 +184,7 @@ multipledispatch==0.4.9
 munch==2.3.2
 murmurhash==0.28.0
 navigator-updater==0.1.0
-nbconvert==5.3.1
+nbconvert==6.5.1
 nbformat==4.4.0
 networkx==2.2
 newspaper==0.1.0.7
